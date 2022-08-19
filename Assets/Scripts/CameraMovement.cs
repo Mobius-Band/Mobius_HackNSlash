@@ -8,7 +8,7 @@ public class CameraMovement : MonoBehaviour
 {
     [SerializeField] private Transform _cameraHolder;
     [Range(0, 100)]
-    [SerializeField] private float Sensitivity;
+    [SerializeField] private float _sensitivity;
     private Vector3 rayDirection;
     private Vector2 _input;
     private Vector2 _fixedInput;
@@ -24,20 +24,14 @@ public class CameraMovement : MonoBehaviour
 
     private void Update()
     {
-        _fixedInput.x = _input.x * Sensitivity * Time.deltaTime;
-        _fixedInput.y = _input.y * Sensitivity * Time.deltaTime;
-
-        if (_input == Vector2.zero)
-        {
-            return;
-        }
+        _camera.transform.LookAt(_cameraHolder);
         
-        transform.LookAt(_cameraHolder);
-        _cameraHolder.rotation = Quaternion.Euler(-_input.y, _input.x, 0);
+        _fixedInput += _input * _sensitivity * Time.deltaTime;
+        _cameraHolder.rotation = Quaternion.Euler(-_fixedInput.y, _fixedInput.x, 0);
     }
     
     private void OnLook(InputValue value)
     {
-        _input += value.Get<Vector2>();
+        _input = value.Get<Vector2>();
     }
 }

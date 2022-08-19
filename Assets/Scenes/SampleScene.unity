@@ -356,7 +356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameraHolder: {fileID: 1052108463}
-  Sensitivity: 50
+  _sensitivity: 25
 --- !u!114 &400750112
 MonoBehaviour:
   m_ObjectHideFlags: 0
