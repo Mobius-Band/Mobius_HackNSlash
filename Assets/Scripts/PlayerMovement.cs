@@ -11,9 +11,11 @@ public class PlayerMovement : MonoBehaviour
 {
     [Range(1, 100)] 
     [SerializeField] private float _moveSpeed;
+    [Range(1, 50)] 
+    [SerializeField] private float _rotationTime = 1f;
     [SerializeField] private Transform _model;
     [SerializeField] private Transform _cameraHolder;
-    [SerializeField] private float _rotationSpeed;
+    private float _rotationVelocity;
     private Vector2 _moveInput;
 
     private void Update()
@@ -23,10 +25,12 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         
-        transform.position += new Vector3(_moveInput.x * _moveSpeed/100 * Time.deltaTime, 0, _moveInput.y * _moveSpeed/100 * Time.deltaTime);
+        float targetAngle = Mathf.Atan2(_moveInput.x, _moveInput.y) * Mathf.Rad2Deg + _cameraHolder.eulerAngles.y;
+        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _rotationVelocity, _rotationTime/100);
+        transform.rotation = Quaternion.Euler(0f, angle, 0f);
         
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(_moveInput.x, 0, _moveInput.y), Vector3.up);
-        transform.rotation = Quaternion.RotateTowards(_model.rotation, lookRotation, _rotationSpeed);
+        Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+        transform.position += moveDirection.normalized * _moveSpeed * Time.deltaTime;
     }
 
     private void OnMove(InputValue value)

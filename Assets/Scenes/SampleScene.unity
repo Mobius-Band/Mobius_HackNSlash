@@ -276,9 +276,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 20
+  _rotationTime: 20
   _model: {fileID: 1513244640}
   _cameraHolder: {fileID: 1052108463}
-  _rotationSpeed: 5
 --- !u!54 &400750108
 Rigidbody:
   m_ObjectHideFlags: 0
