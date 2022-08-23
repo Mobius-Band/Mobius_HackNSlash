@@ -253,9 +253,9 @@ GameObject:
   - component: {fileID: 400750108}
   - component: {fileID: 400750113}
   - component: {fileID: 400750110}
+  - component: {fileID: 400750111}
   - component: {fileID: 400750107}
   - component: {fileID: 400750112}
-  - component: {fileID: 400750111}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -276,7 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 20
-  _rotationTime: 20
+  _rotationTime: 1
   _model: {fileID: 1513244640}
   _cameraHolder: {fileID: 1052108463}
 --- !u!54 &400750108
@@ -357,7 +357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameraHolder: {fileID: 1052108463}
-  _sensitivity: 25
+  _sensitivity: 100
 --- !u!114 &400750112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,7 +373,7 @@ MonoBehaviour:
   _attackPoint: {fileID: 1255696495}
   _enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   _attackRange: 0.5
   _damage: 5
 --- !u!65 &400750113
@@ -993,6 +993,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1971291502}
   - component: {fileID: 1971291503}
+  - component: {fileID: 1971291505}
+  - component: {fileID: 1971291504}
+  - component: {fileID: 1971291506}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -1029,3 +1032,41 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1971291504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971291501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 711a9b069b8437649b5fd13d56114d19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1971291505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971291501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd2955512ab5256459ed06c919af3dcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _currentHealth: 0
+--- !u!114 &1971291506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971291501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcdffdfd3b29ef541b34a007fa3d934b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

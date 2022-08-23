@@ -12,5 +12,13 @@ namespace Util
         {
             _currentHealth = _maxHealth;
         }
+
+        private void Update()
+        {
+            if (_currentHealth <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }

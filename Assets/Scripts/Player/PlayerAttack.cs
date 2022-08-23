@@ -17,7 +17,6 @@ namespace Player
 
             foreach (Collider enemy in hitEnemies)
             {
-                print("hit: " + enemy.name + "!");
                 enemy.GetComponent<TakeDamage>().takeDamage(_damage);
             }
         }

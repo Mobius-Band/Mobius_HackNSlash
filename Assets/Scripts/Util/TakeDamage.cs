@@ -1,4 +1,5 @@
 using System;
+using Enemy;
 using UnityEngine;
 
 namespace Util
@@ -15,7 +16,9 @@ namespace Util
         public void takeDamage(int damage)
         {
             _health._currentHealth -= damage;
-            print("hp: " + _health._currentHealth);
+            print(gameObject.name + " hp: " + _health._currentHealth);
+            StartCoroutine(GetComponent<EnemyTakeDamageEffect>().TakeDamageEffectCoroutine());
+
             //GetComponent<Knockback>().ApplyKnockback(damage);
         }
     }
