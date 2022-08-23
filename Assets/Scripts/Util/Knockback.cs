@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,9 +6,11 @@ namespace Util
 {
     public class Knockback : MonoBehaviour
     {
-        public void ApplyKnockback(int amount)
+        [SerializeField] private Transform _player;
+        public IEnumerator ApplyKnockback(int amount)
         {
-            transform.position = Vector3.Lerp(transform.position, -transform.forward * amount, 0.5f);
+            GetComponent<Rigidbody>().AddForce(_player.forward * amount * 100);
+            yield break;
         }
     }
 }

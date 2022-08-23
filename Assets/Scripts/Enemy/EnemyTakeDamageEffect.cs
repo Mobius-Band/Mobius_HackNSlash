@@ -6,21 +6,21 @@ namespace Enemy
 {
     public class EnemyTakeDamageEffect : MonoBehaviour 
     {
-        [SerializeField] private Material effectMaterial;
-        [SerializeField] private MeshRenderer meshRenderer;
-        [SerializeField] private float speed;
-        private Material originalMaterial;
+        [SerializeField] private Material _effectMaterial;
+        [SerializeField] private MeshRenderer _meshRenderer;
+        [SerializeField] private float _speed;
+        private Material _originalMaterial;
 
         private void Start()
         {
-            originalMaterial = meshRenderer.material;
+            _originalMaterial = _meshRenderer.material;
         }
 
         public IEnumerator TakeDamageEffectCoroutine()
         {
-            meshRenderer.material = effectMaterial;
-            yield return new WaitForSeconds(speed);
-            meshRenderer.material = originalMaterial;
+            _meshRenderer.material = _effectMaterial;
+            yield return new WaitForSeconds(_speed);
+            _meshRenderer.material = _originalMaterial;
         }
     }
 }
