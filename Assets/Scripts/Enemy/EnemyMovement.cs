@@ -12,6 +12,6 @@ public class EnemyMovement : MonoBehaviour
     private void Update()
     {
         transform.LookAt(_player);
-        transform.position += transform.forward * _speed * Time.deltaTime;
+        transform.position += transform.forward * (_speed * Time.deltaTime);
     }
 }
