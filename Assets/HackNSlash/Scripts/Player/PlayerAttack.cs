@@ -37,7 +37,6 @@ namespace Player
         {
             _isComboing = true;
             
-            print("1");
             BasicAttack();
 
             yield return new WaitForSeconds(_comboDelay[0]);
@@ -49,7 +48,6 @@ namespace Player
                 yield break;
             }
             
-            print("2");
             BasicAttack();
             
             yield return new WaitForSeconds(_comboDelay[1]);
@@ -61,7 +59,6 @@ namespace Player
                 yield break;
             }
             
-            print("3");
             SpecialAttack();
 
             yield return new WaitForSeconds(_comboDelay[2]);

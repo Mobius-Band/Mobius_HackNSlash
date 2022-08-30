@@ -460,8 +460,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d47704da60b7c8a488c171e0de150801, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cameraHolder: {fileID: 7999598549863259295}
   _sensitivity: 100
+  _cameraHolder: {fileID: 7999598549863259295}
+  _collisionMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!114 &7999598550545812523
 MonoBehaviour:
   m_ObjectHideFlags: 0
