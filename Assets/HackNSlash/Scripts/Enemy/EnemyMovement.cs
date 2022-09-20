@@ -3,15 +3,27 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private Transform _player;
     [SerializeField] private float _speed = 5f;
-    
-    private void Update()
+    [SerializeField] private float _chasePeriod = 1f;
+
+    private NavMeshAgent _navMeshAgent;
+
+    void Awake()
     {
-        transform.LookAt(_player);
-        transform.position += transform.forward * (_speed * Time.deltaTime);
+        _navMeshAgent = GetComponent<NavMeshAgent>();
+    }
+
+    private IEnumerable CheckForTarget()
+    {
+        while (true)
+        {
+            _navMeshAgent.SetDestination(_player.position);
+            yield return new WaitForSeconds(_chasePeriod);
+        }
     }
 }

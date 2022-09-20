@@ -5,15 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30ca3736-c559-402b-bd5e-f9e5cec6deac" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/HackNSlash/Scripts/Player/PlayerInputManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/HackNSlash/Scripts/Player/PlayerInputManager.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/HackNSlash/Scripts/Player/PlayerManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/HackNSlash/Scripts/Player/PlayerManager.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Mobius_HackNSlash/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mobius_HackNSlash/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HackNSlash/Characters/PlayerAvatar/Input/PlayerInputActions.inputactions.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/HackNSlash/Characters/PlayerAvatar/Input/PlayerInputActions.inputactions.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HackNSlash/Characters/PlayerAvatar/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/HackNSlash/Characters/PlayerAvatar/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HackNSlash/Scripts/Player/PlayerAttack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/HackNSlash/Scripts/Player/PlayerAttack.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HackNSlash/Scripts/Player/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/HackNSlash/Scripts/Player/PlayerMovement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HackNSlash/Scripts/Enemy/EnemyMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/HackNSlash/Scripts/Enemy/EnemyMovement.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,11 +24,11 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "node.js.selected.package.tslint": "(autodetect)"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2021.3.5f1\Editor\Unity.exe" />
