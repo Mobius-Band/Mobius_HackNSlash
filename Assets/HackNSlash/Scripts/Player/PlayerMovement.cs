@@ -9,11 +9,10 @@ namespace Player
         [SerializeField] private float _moveSpeed;
         [Range(1, 50)] 
         [SerializeField] private float _rotationTime = 1f;
-        [SerializeField] private Transform _model;
         [SerializeField] private Transform _cameraHolder;
         private float _rotationVelocity;
         private Vector2 _moveInput;
-
+        public Vector2 MoveInput { get => _moveInput; set => _moveInput = value; }
         private void Update()
         {
             if (_moveInput == Vector2.zero)
@@ -27,11 +26,6 @@ namespace Player
         
             Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             transform.position += moveDirection.normalized * _moveSpeed * Time.deltaTime;
-        }
-
-        private void OnMove(InputValue value)
-        {
-            _moveInput = value.Get<Vector2>();
         }
     }
 }

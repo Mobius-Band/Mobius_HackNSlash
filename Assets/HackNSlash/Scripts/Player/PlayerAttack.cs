@@ -18,12 +18,12 @@ namespace Player
         private bool _isAttacking = false;
         private bool _isComboing = false;
 
-        private void Start()
+        private void Awake()
         {
             _originalColor = _meshRenderer.material.color;
         }
 
-        private void OnAttack()
+        public void Attack()
         {
             if (!_isComboing)
             {
