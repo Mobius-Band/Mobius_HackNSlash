@@ -15,6 +15,8 @@ namespace Camera
         private Vector2 _fixedInput;
         private float distance;
 
+        public Vector2 Input { set => _input = value; }
+        
         private void Awake()
         {
             Cursor.visible = false;
@@ -48,11 +50,6 @@ namespace Camera
             
             transform.localPosition = Vector3.Lerp(transform.localPosition, transform.localPosition.normalized * (distance - 0.5f), Time.deltaTime * 100);
             */
-        }
-    
-        private void OnLook(InputValue value)
-        {
-            _input = value.Get<Vector2>();
         }
     }
 }

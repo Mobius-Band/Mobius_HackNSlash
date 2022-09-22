@@ -5,9 +5,217 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="30ca3736-c559-402b-bd5e-f9e5cec6deac" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/HackNSlash/Characters/PlayerAvatar/Input/PlayerInputActions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HackNSlash/Characters/PlayerAvatar/Input/PlayerInputActions.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HackNSlash/Scripts/Player/PlayerInputManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HackNSlash/Scripts/Player/PlayerInputManager.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HackNSlash/Scripts/Player/PlayerManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/HackNSlash/Scripts/Player/PlayerManager.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/.github/FUNDING.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/AV.Inspector.asmdef" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/AV.Inspector.asmdef.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Elements.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Elements/InspectorTab.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Elements/InspectorTab.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Elements/InspectorTabsBar.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Elements/InspectorTabsBar.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Elements/TooltipElement.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Elements/TooltipElement.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/PackageInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/PackageInfo.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/PackagePrefs.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/PackagePrefs.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Preferences.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Preferences/InspectorPatchesUI.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Preferences/InspectorPatchesUI.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Preferences/InspectorPrefs.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Preferences/InspectorPrefs.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Preferences/InspectorPrefsUI.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Preferences/InspectorPrefsUI.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Preferences/InspectorSettingsProvider.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Preferences/InspectorSettingsProvider.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Reflected.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Reflected/EditorElementRef.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Reflected/EditorElementRef.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Reflected/InspectorWindowRef.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Reflected/InspectorWindowRef.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Reflected/PropertyEditorRef.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Reflected/PropertyEditorRef.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/SerializedTable.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/SerializedTable.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/SmartInspector.Resources.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/SmartInspector.Resources.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/SmartInspector.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/SmartInspector.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/UIResources.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/UIResources.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Utils.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Utils/DictionaryUtils.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Utils/DictionaryUtils.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Utils/EditorUtils.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Utils/EditorUtils.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Utils/VisualElementUtils.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Base/Utils/VisualElementUtils.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Drawers.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Drawers/ReadOnlyDrawer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Drawers/ReadOnlyDrawer.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Drawers/UnityEventCompactDrawer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Drawers/UnityEventCompactDrawer.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/LICENSE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Package Prefs.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Package Prefs.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Patches.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Patches/AssetPreviewPatch.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Patches/AssetPreviewPatch.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Patches/EditorDraggingPatch.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Patches/EditorDraggingPatch.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Patches/EditorElementPatch.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Patches/EditorElementPatch.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Patches/EditorHeaderItemPatch.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Patches/EditorHeaderItemPatch.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Patches/EditorPatch.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Patches/EditorPatch.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Patches/GenericInspectorPatch.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Patches/GenericInspectorPatch.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Patches/InspectorUtilsPatch.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Patches/InspectorUtilsPatch.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Patches/ObjectNamesPatch.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Patches/ObjectNamesPatch.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Patches/PostHeaderGUIPatch.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Patches/PostHeaderGUIPatch.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Patches/PrefabImporterPatch.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Patches/PrefabImporterPatch.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Patches/PropertyEditorPatch.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Patches/PropertyEditorPatch.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Patches/Provider.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Patches/Provider/PatchBase.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Patches/Provider/PatchBase.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Patches/Provider/Patcher.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Patches/Provider/Patcher.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Plugins.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Plugins/Harmony-License.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Plugins/Harmony-License.md.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Plugins/Smart-Inspector-Harmony.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Plugins/Smart-Inspector-Harmony.dll.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/README.md.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/AV.Inspector.Runtime.asmdef" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/AV.Inspector.Runtime.asmdef.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/AssemblyInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/AssemblyInfo.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Attributes.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Attributes/InitializeOnInspectorAttribute.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Attributes/InitializeOnInspectorAttribute.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Attributes/ReadOnlyAttribute.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Attributes/ReadOnlyAttribute.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/CallHandle.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/CallHandle.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/Extensions.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/Extensions/IStyleExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/Extensions/IStyleExtensions.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/Extensions/PropertyFieldExtension.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/Extensions/PropertyFieldExtension.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/Extensions/VisualElementExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/Extensions/VisualElementExtensions.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentElement.Base.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentElement.Base.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentElement.Basic.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentElement.Basic.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentElement.Bindings.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentElement.Bindings.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentElement.Callbacks.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentElement.Callbacks.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentElement.Classes.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentElement.Classes.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentElement.Factory.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentElement.Factory.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentElement.Query.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentElement.Query.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentElement.Scheduling.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentElement.Scheduling.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentElement.Styling.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentElement.Styling.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentElement.Utils.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentElement.Utils.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentUITK.Constants.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentUITK.Constants.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentUITK.Controls.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentUITK.Controls.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentUITK.Resources.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentUITK.Resources.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentUITK.Structs.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentUITK.Structs.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentUITK.Styles.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentUITK.Styles.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentUITK.Utils.Assets.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentUITK.Utils.Assets.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentUITK.Utils.Bindings.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentUITK.Utils.Bindings.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentUITK.Utils.Callbacks.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentUITK.Utils.Callbacks.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentUITK.Utils.Editor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/FluentUITK.Utils.Editor.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/IFluent.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/IFluent.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/IFluentExtensions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/IFluentExtensions.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/Styles.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/Styles/-core-styles-light.uss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/Styles/-core-styles-light.uss.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/Styles/-core-styles.uss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/Fluent UITK/Styles/-core-styles.uss.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/SmartInspector.EditorElement.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/SmartInspector.EditorElement.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/SmartInspector.Selection.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/SmartInspector.Selection.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/SmartInspector.Utils.Assets.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/SmartInspector.Utils.Assets.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/SmartInspector.Utils.Editor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/SmartInspector.Utils.Editor.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/SmartInspector.Utils.Json.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/SmartInspector.Utils.Json.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/SmartInspector.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/Runtime/SmartInspector.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/UI.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/UI/Icons.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/UI/Icons/Debug Icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/UI/Icons/Debug Icon.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/UI/Icons/Pin Icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/UI/Icons/Pin Icon.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/UI/Styles.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/UI/Styles/--inspector-prefs-ui-light.uss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/UI/Styles/--inspector-prefs-ui-light.uss.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/UI/Styles/--inspector-prefs-ui.uss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/UI/Styles/--inspector-prefs-ui.uss.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/UI/Styles/headers.uss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/UI/Styles/headers.uss.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/UI/Styles/scroll-view.uss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/UI/Styles/scroll-view.uss.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/UI/Styles/tabs-bar-light.uss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/UI/Styles/tabs-bar-light.uss.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/UI/Styles/tabs-bar.uss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/UI/Styles/tabs-bar.uss.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/UI/Styles/tooltip-element.uss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/UI/Styles/tooltip-element.uss.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/package.json.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Mobius_HackNSlash/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mobius_HackNSlash/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HackNSlash/Characters/PlayerAvatar/Input/PlayerInputActions.inputactions.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/HackNSlash/Characters/PlayerAvatar/Input/PlayerInputActions.inputactions.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/HackNSlash/Characters/PlayerAvatar/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/HackNSlash/Characters/PlayerAvatar/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HackNSlash/Scripts/Camera/CameraMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/HackNSlash/Scripts/Camera/CameraMovement.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/HackNSlash/Scripts/Player/PlayerAttack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/HackNSlash/Scripts/Player/PlayerAttack.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HackNSlash/Scripts/Player/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/HackNSlash/Scripts/Player/PlayerMovement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HackNSlash/_Scenes/AnimationTesting.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/HackNSlash/_Scenes/AnimationTesting.unity.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ThirdParty/Plugins/Smart-Inspector/LICENSE.md.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,6 +223,8 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/HackNSlash/Scripts/Player/PlayerInputManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/HackNSlash/Scripts/Player/PlayerManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.3.0/InputSystem/Plugins/PlayerInput/PlayerInput.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -25,7 +235,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent">
+    <property name="Discover.Launch.Via.Unity" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="rider.run.widget.enabled.cache" value="false" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../../../game-dev/game builds/hacknslash-prototype\hacknslashprototype.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="E:\uwu\game-dev\game builds\hacknslash-prototype" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2021.3.5f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath &quot;C:\Users\marlus.cabral\[DDELETE TJHIS]\Mobius_HackNSlash\Mobius_HackNSlash&quot; -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
@@ -58,7 +282,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a85e001e-a93b-44f1-bdec-4f9010379bdf" name="Changes" comment="" />
+      <changelist id="30ca3736-c559-402b-bd5e-f9e5cec6deac" name="Changes" comment="" />
       <created>1661223473360</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -67,6 +291,7 @@
       <workItem from="1661395518166" duration="180000" />
       <workItem from="1661396232697" duration="1616000" />
       <workItem from="1661470958025" duration="594000" />
+      <workItem from="1663865351945" duration="350000" />
     </task>
     <servers />
   </component>
