@@ -138,7 +138,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""id"": ""81b66925-920d-42bd-9c4b-d129219514eb"",
                     ""path"": ""<Pointer>/delta"",
                     ""interactions"": """",
-                    ""processors"": ""ScaleVector2(x=0.05,y=0.05)"",
+                    ""processors"": ""ScaleVector2(x=0.05,y=-0.05)"",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
