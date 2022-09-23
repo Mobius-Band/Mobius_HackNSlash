@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Util;
@@ -10,22 +12,30 @@ namespace Player
     {
         [SerializeField] private Transform _attackPoint;
         [SerializeField] private LayerMask _enemyLayer;
-        [SerializeField] private MeshRenderer _meshRenderer;
+        [SerializeField] private Animator _animator;
         [SerializeField] private float _attackRange = 0.5f;
         [SerializeField] private int _damage = 5;
-        [SerializeField] private float[] _comboDelay;
-        private Color _originalColor;
+        [SerializeField] private float[] _animationHitDelay;
+        private PlayerMovement _playerMovement;
         private bool _isAttacking = false;
         private bool _isComboing = false;
+        private bool _isAnimationOver = false;
+        private bool _isAnimationFinished => _animator.GetBool("isAnimationFinished");
 
         private void Awake()
         {
-            _originalColor = _meshRenderer.material.color;
+            _playerMovement = GetComponent<PlayerMovement>();
+        }
+
+        private void Update()
+        {
+            _animator.SetBool("isComboing", _isComboing);
         }
 
         public void Attack()
         {
             _isAttacking = true;
+            Invoke("StopAttacking", 0.5f);
             
             if (!_isComboing)
             {
@@ -36,65 +46,82 @@ namespace Player
         private IEnumerator Combo()
         {
             _isComboing = true;
-            
-            BasicAttack();
+            _playerMovement.SuspendMovement();
 
-            yield return new WaitForSeconds(_comboDelay[0]);
+            _isAnimationOver = false;
+            _animator.SetTrigger("goToNextAnimation");
+            print("start animation 1");
+            Invoke("Hit", _animationHitDelay[0]);
+
+            while (!_isAnimationOver)
+            {
+                yield return null;
+            }
 
             if (!_isAttacking)
             {
-                _isComboing = false;
-                _meshRenderer.material.color = _originalColor;
+                EndCombo();
                 yield break;
             }
+
+            print("passed 1");
+            _isAnimationOver = false;
+            _animator.SetTrigger("goToNextAnimation");
+            print("start animation 2");
+            Invoke("Hit", _animationHitDelay[1]);
             
-            BasicAttack();
-            
-            yield return new WaitForSeconds(_comboDelay[1]);
+            while (!_isAnimationOver)
+            {
+                yield return null;
+            }
             
             if (!_isAttacking)
             {
-                _isComboing = false;
-                _meshRenderer.material.color = _originalColor;
+                EndCombo();
                 yield break;
             }
             
-            SpecialAttack();
+            print("passed 2");
+            _isAnimationOver = false;
+            _animator.SetTrigger("goToNextAnimation");
+            print("start animation 3");
+            Invoke("Hit", _animationHitDelay[2]);
 
-            yield return new WaitForSeconds(_comboDelay[2]);
+            while (!_isAnimationOver)
+            {
+                yield return null;
+            }
 
-            _meshRenderer.material.color = _originalColor;
-            _isComboing = false;
+            _isAnimationOver = false;
+            EndCombo();
         }
 
-        private void BasicAttack()
+        private void Hit()
         {
-            _meshRenderer.material.color = Color.yellow;
-            
             Collider[] hitEnemies = Physics.OverlapSphere(_attackPoint.position, _attackRange, _enemyLayer);
 
             foreach (Collider enemy in hitEnemies)
             {
                 enemy.GetComponent<TakeDamage>().takeDamage(_damage);
             }
-
-            _isAttacking = false;
         }
 
-        private void SpecialAttack()
+        public void StopAttacking()
         {
-            _meshRenderer.material.color = Color.green;
-            
-            Collider[] hitEnemies = Physics.OverlapSphere(_attackPoint.position, _attackRange + 1.5f, _enemyLayer);
-
-            foreach (Collider enemy in hitEnemies)
-            {
-                enemy.GetComponent<TakeDamage>().takeDamage(_damage * 2);
-            }
-            
             _isAttacking = false;
         }
 
+        private void EndCombo()
+        {
+            _isComboing = false;
+            _playerMovement.RegainMovement();
+        }
+
+        public void EndAnimation()
+        {
+            _isAnimationOver = true;
+        }
+        
         private void OnDrawGizmosSelected()
         {
             if (_attackPoint == null)
