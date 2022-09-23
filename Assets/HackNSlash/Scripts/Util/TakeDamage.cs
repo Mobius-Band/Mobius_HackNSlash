@@ -16,7 +16,6 @@ namespace Util
         public void takeDamage(int damage)
         {
             _health._currentHealth -= damage;
-            //print(gameObject.name + " hp: " + _health._currentHealth);
             StartCoroutine(GetComponent<EnemyTakeDamageEffect>().TakeDamageEffectCoroutine());
             StartCoroutine(GetComponent<Knockback>().ApplyKnockback(damage));
         }

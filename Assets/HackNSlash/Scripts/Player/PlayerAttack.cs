@@ -15,12 +15,10 @@ namespace Player
         [SerializeField] private Animator _animator;
         [SerializeField] private float _attackRange = 0.5f;
         [SerializeField] private int _damage = 5;
-        [SerializeField] private float[] _animationHitDelay;
         private PlayerMovement _playerMovement;
         private bool _isAttacking = false;
         private bool _isComboing = false;
         private bool _isAnimationOver = false;
-        private bool _isAnimationFinished => _animator.GetBool("isAnimationFinished");
 
         private void Awake()
         {
@@ -50,8 +48,6 @@ namespace Player
 
             _isAnimationOver = false;
             _animator.SetTrigger("goToNextAnimation");
-            print("start animation 1");
-            Invoke("Hit", _animationHitDelay[0]);
 
             while (!_isAnimationOver)
             {
@@ -64,11 +60,8 @@ namespace Player
                 yield break;
             }
 
-            print("passed 1");
             _isAnimationOver = false;
             _animator.SetTrigger("goToNextAnimation");
-            print("start animation 2");
-            Invoke("Hit", _animationHitDelay[1]);
             
             while (!_isAnimationOver)
             {
@@ -81,11 +74,8 @@ namespace Player
                 yield break;
             }
             
-            print("passed 2");
             _isAnimationOver = false;
             _animator.SetTrigger("goToNextAnimation");
-            print("start animation 3");
-            Invoke("Hit", _animationHitDelay[2]);
 
             while (!_isAnimationOver)
             {
@@ -96,7 +86,7 @@ namespace Player
             EndCombo();
         }
 
-        private void Hit()
+        public void Hit()
         {
             Collider[] hitEnemies = Physics.OverlapSphere(_attackPoint.position, _attackRange, _enemyLayer);
 
@@ -113,6 +103,7 @@ namespace Player
 
         private void EndCombo()
         {
+            print("end combo");
             _isComboing = false;
             _playerMovement.RegainMovement();
         }

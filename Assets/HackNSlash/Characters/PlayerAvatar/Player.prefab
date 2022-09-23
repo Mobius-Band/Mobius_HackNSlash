@@ -471,10 +471,6 @@ MonoBehaviour:
   _animator: {fileID: 4957899228246454920}
   _attackRange: 1
   _damage: 5
-  _animationHitDelay:
-  - 0.65
-  - 0.53
-  - 0.5
 --- !u!114 &808592645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -487,6 +483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c43d87a6c5341f188767746b720cdda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerAnimationManager: {fileID: 0}
 --- !u!114 &808592646
 MonoBehaviour:
   m_ObjectHideFlags: 0

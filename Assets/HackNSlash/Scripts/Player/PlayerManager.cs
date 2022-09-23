@@ -27,6 +27,7 @@ namespace Player
         {
             _input.InputActions.Player.Attack.performed += _ => _attack.Attack();
             _playerAnimationManager.OnAnimationEnd += _attack.EndAnimation;
+            _playerAnimationManager.OnAnimationHit += _attack.Hit;
         }
         
         void Update()
