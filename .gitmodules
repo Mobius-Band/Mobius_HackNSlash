@@ -1,0 +1,3 @@
+[submodule "Assets/ThirdParty/Plugins/FluidPlay/EzMsg"]
+	path = Assets/ThirdParty/Plugins/FluidPlay/EzMsg
+	url = https://github.com/FluidPlay/EzMsg

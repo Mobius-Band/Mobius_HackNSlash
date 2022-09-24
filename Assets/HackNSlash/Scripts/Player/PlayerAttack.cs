@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Ez;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Util;
@@ -75,7 +76,7 @@ namespace Player
 
             foreach (Collider enemy in hitEnemies)
             {
-                enemy.GetComponent<TakeDamage>().takeDamage(_damage);
+                EzMsg.Send<IDamageable>(enemy.gameObject, (x) => x.TakeDamage(_damage));
             }
 
             _isAttacking = false;
@@ -89,7 +90,8 @@ namespace Player
 
             foreach (Collider enemy in hitEnemies)
             {
-                enemy.GetComponent<TakeDamage>().takeDamage(_damage * 2);
+                EzMsg.Send<IDamageable>(enemy.gameObject, (x) => x.TakeDamage(_damage*2));
+                
             }
             
             _isAttacking = false;
