@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Util
 {
-    public class Damageable : MonoBehaviour, IDamageable
+    public class EnemyDamageable : MonoBehaviour, IDamageable
     {
         private Health _health;
 
@@ -18,7 +18,6 @@ namespace Util
         public IEnumerable TakeDamage(int damage)
         {
             _health._currentHealth -= damage;
-            //print(gameObject.name + " hp: " + _health._currentHealth);
             StartCoroutine(GetComponent<EnemyTakeDamageEffect>().TakeDamageEffectCoroutine());
             StartCoroutine(GetComponent<Knockback>().ApplyKnockback(damage));
             yield break;
