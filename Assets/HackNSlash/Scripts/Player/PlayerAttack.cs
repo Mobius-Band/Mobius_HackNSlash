@@ -93,7 +93,8 @@ namespace Player
 
             foreach (Collider enemy in hitEnemies)
             {
-                EzMsg.Send<IDamageable>(enemy.gameObject, (x) => x.TakeDamage(_damage));
+                // EzMsg.Send<IDamageable>(enemy.gameObject, (x) => x.TakeDamage(_damage));
+                enemy.gameObject.Send<IDamageable>(x => x.TakeDamage(_damage));
             }
         }
 
@@ -104,7 +105,6 @@ namespace Player
 
         private void EndCombo()
         {
-            print("end combo");
             _isComboing = false;
             _playerMovement.RegainMovement();
         }

@@ -37,7 +37,6 @@ public class EnemyBehaviour : MonoBehaviour
         {
             _attackManager.Attack(0);
         }
-        
     }
 
     private IEnumerator CheckForTarget()

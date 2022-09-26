@@ -1,5 +1,8 @@
 ﻿using System.Collections;
+using Enemy;
+using Ez;
 using UnityEngine;
+using Util;
 
 namespace Combat
 {

@@ -43,7 +43,13 @@ namespace Combat
         public void Attack(int index)
         {
             SetCurrentAttack(index);
-            _animator.SetTrigger(CurrentAttack.animationName);
+            _animator.SetBool(CurrentAttack.animationName, true);
+        }
+
+        //TODO fix this. Is currently called by animation event
+        public void StopAttack()
+        {
+            _animator.SetBool(CurrentAttack.animationName, false);
         }
         
         

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Enemy
 {
-    public class EnemyTakeDamageEffect : MonoBehaviour 
+    public class TakeDamageEffect : MonoBehaviour 
     {
         [SerializeField] private Material _effectMaterial;
         [SerializeField] private MeshRenderer _meshRenderer;
