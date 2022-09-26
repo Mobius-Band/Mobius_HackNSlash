@@ -10,6 +10,9 @@
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 
+#Jetbrains Rider files
+/.idea
+
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
@@ -70,5 +73,5 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
-.idea/.idea.Mobius_HackNSlash/.idea/workspace.xml
 .idea/.idea.Mobius_HackNSlash/.idea/vcs.xml
+.idea/.idea.Mobius_HackNSlash/.idea/workspace.xml

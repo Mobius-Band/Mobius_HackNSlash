@@ -9,6 +9,7 @@ namespace Player
     [RequireComponent(typeof(CameraMovement))]
     public class PlayerManager : MonoBehaviour
     {
+        [SerializeField] private PlayerAnimationManager _playerAnimationManager;
         private PlayerInputManager _input;
         private PlayerAttack _attack;
         private PlayerMovement _movement;
@@ -25,6 +26,8 @@ namespace Player
         void Start()
         {
             _input.InputActions.Player.Attack.performed += _ => _attack.Attack();
+            _playerAnimationManager.OnAnimationEnd += _attack.EndAnimation;
+            _playerAnimationManager.OnAnimationHit += _attack.Hit;
         }
         
         void Update()

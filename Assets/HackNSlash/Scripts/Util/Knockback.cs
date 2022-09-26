@@ -9,7 +9,7 @@ namespace Util
         [SerializeField] private Transform _player;
         public IEnumerator ApplyKnockback(int amount)
         {
-            GetComponent<Rigidbody>().AddForce(_player.forward * amount * 50, ForceMode.Acceleration);
+            GetComponent<Rigidbody>().AddForce(_player.forward * amount * 75, ForceMode.Acceleration);
             yield break;
         }
     }

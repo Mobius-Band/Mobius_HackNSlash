@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Ez;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Util;
@@ -11,91 +13,107 @@ namespace Player
     {
         [SerializeField] private Transform _attackPoint;
         [SerializeField] private LayerMask _enemyLayer;
-        [SerializeField] private MeshRenderer _meshRenderer;
+        [SerializeField] private Animator _animator;
         [SerializeField] private float _attackRange = 0.5f;
         [SerializeField] private int _damage = 5;
-        [SerializeField] private float[] _comboDelay;
-        private Color _originalColor;
+        private PlayerMovement _playerMovement;
         private bool _isAttacking = false;
         private bool _isComboing = false;
+        private bool _isAnimationOver = false;
 
         private void Awake()
         {
-            _originalColor = _meshRenderer.material.color;
+            _playerMovement = GetComponent<PlayerMovement>();
+        }
+
+        private void Update()
+        {
+            _animator.SetBool("isComboing", _isComboing);
         }
 
         public void Attack()
         {
+            _isAttacking = true;
+            Invoke("StopAttacking", 0.5f);
+            
             if (!_isComboing)
             {
                 StartCoroutine(Combo());
             }
-
-            _isAttacking = true;
         }
 
         private IEnumerator Combo()
         {
             _isComboing = true;
-            
-            BasicAttack();
+            _playerMovement.SuspendMovement();
 
-            yield return new WaitForSeconds(_comboDelay[0]);
+            _isAnimationOver = false;
+            _animator.SetTrigger("goToNextAnimation");
+
+            while (!_isAnimationOver)
+            {
+                yield return null;
+            }
 
             if (!_isAttacking)
             {
-                _isComboing = false;
-                _meshRenderer.material.color = _originalColor;
+                EndCombo();
                 yield break;
             }
+
+            _isAnimationOver = false;
+            _animator.SetTrigger("goToNextAnimation");
             
-            BasicAttack();
-            
-            yield return new WaitForSeconds(_comboDelay[1]);
+            while (!_isAnimationOver)
+            {
+                yield return null;
+            }
             
             if (!_isAttacking)
             {
-                _isComboing = false;
-                _meshRenderer.material.color = _originalColor;
+                EndCombo();
                 yield break;
             }
             
-            SpecialAttack();
+            _isAnimationOver = false;
+            _animator.SetTrigger("goToNextAnimation");
 
-            yield return new WaitForSeconds(_comboDelay[2]);
+            while (!_isAnimationOver)
+            {
+                yield return null;
+            }
 
-            _meshRenderer.material.color = _originalColor;
-            _isComboing = false;
+            _isAnimationOver = false;
+            EndCombo();
         }
 
-        private void BasicAttack()
+        public void Hit()
         {
-            _meshRenderer.material.color = Color.yellow;
-            
             Collider[] hitEnemies = Physics.OverlapSphere(_attackPoint.position, _attackRange, _enemyLayer);
 
             foreach (Collider enemy in hitEnemies)
             {
-                enemy.gameObject.Send<IDamageable>(x => x.TakeDamage(_damage));
+                EzMsg.Send<IDamageable>(enemy.gameObject, (x) => x.TakeDamage(_damage));
             }
-
-            _isAttacking = false;
         }
 
-        private void SpecialAttack()
+        public void StopAttacking()
         {
-            _meshRenderer.material.color = Color.green;
-            
-            Collider[] hitEnemies = Physics.OverlapSphere(_attackPoint.position, _attackRange + 1.5f, _enemyLayer);
-
-            foreach (Collider enemy in hitEnemies)
-            {
-                enemy.gameObject.Send<IDamageable>(x => x.TakeDamage(_damage*2));
-            }
-            
             _isAttacking = false;
         }
 
+        private void EndCombo()
+        {
+            print("end combo");
+            _isComboing = false;
+            _playerMovement.RegainMovement();
+        }
+
+        public void EndAnimation()
+        {
+            _isAnimationOver = true;
+        }
+        
         private void OnDrawGizmosSelected()
         {
             if (_attackPoint == null)
