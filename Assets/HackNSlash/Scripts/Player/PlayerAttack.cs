@@ -76,7 +76,7 @@ namespace Player
 
             foreach (Collider enemy in hitEnemies)
             {
-                EzMsg.Send<IDamageable>(enemy.gameObject, (x) => x.TakeDamage(_damage));
+                enemy.gameObject.Send<IDamageable>(x => x.TakeDamage(_damage));
             }
 
             _isAttacking = false;
@@ -90,8 +90,7 @@ namespace Player
 
             foreach (Collider enemy in hitEnemies)
             {
-                EzMsg.Send<IDamageable>(enemy.gameObject, (x) => x.TakeDamage(_damage*2));
-                
+                enemy.gameObject.Send<IDamageable>(x => x.TakeDamage(_damage*2));
             }
             
             _isAttacking = false;

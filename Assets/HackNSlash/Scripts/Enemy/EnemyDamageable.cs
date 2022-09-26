@@ -17,7 +17,7 @@ namespace Util
 
         public IEnumerable TakeDamage(int damage)
         {
-            _health._currentHealth -= damage;
+            _health.CurrentHealth -= damage;
             StartCoroutine(GetComponent<EnemyTakeDamageEffect>().TakeDamageEffectCoroutine());
             StartCoroutine(GetComponent<Knockback>().ApplyKnockback(damage));
             yield break;

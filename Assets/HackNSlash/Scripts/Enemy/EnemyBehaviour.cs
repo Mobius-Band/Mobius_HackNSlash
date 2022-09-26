@@ -1,9 +1,12 @@
 using System;
 using System.Collections;
+using Combat;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(AttackManager))]
 public class EnemyBehaviour : MonoBehaviour
 {
     [SerializeField] private Transform _player;
@@ -11,14 +14,14 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private float _attackEnablingAngle = 30f;
 
     private NavMeshAgent _navMeshAgent;
-    private Animator _animator;
-
+    private AttackManager _attackManager;
+    
     private bool _canAttack = false;
 
     void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        _animator = GetComponent<Animator>();
+        _attackManager = GetComponent<AttackManager>();
     }
 
     void Start()
@@ -29,8 +32,11 @@ public class EnemyBehaviour : MonoBehaviour
     private void Update()
     {
         _canAttack = Vector3.SqrMagnitude(_player.position - transform.position) <=
-                      Mathf.Pow(_navMeshAgent.stoppingDistance, 2); 
-        _animator.SetBool("CanAttack", _canAttack);
+                      Mathf.Pow(_navMeshAgent.stoppingDistance, 2);
+        if (_canAttack)
+        {
+            _attackManager.Attack(0);
+        }
         
     }
 

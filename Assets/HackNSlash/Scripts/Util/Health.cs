@@ -5,20 +5,44 @@ namespace Util
 {
     public class Health : MonoBehaviour
     {
-        [SerializeField] private int _maxHealth = 100;
-        public int _currentHealth;
+        [SerializeField] private int maxHealth = 100;
+        private int _currentHealth;
+        private const int MinHealth = 0;
 
-        private void Start()
+        public int CurrentHealth
         {
-            _currentHealth = _maxHealth;
+            get => _currentHealth;
+            set
+            {
+                if (value <= MinHealth)
+                {
+                    _currentHealth = MinHealth;
+                    Die();
+                }
+                else if (value > maxHealth)
+                {
+                    _currentHealth = maxHealth;
+                }
+                else
+                {
+                    _currentHealth = value;
+                }
+            }
+        }
+        
+        void Start()
+        {
+            _currentHealth = maxHealth;
+        }
+        
+        public void TakeDamage(int amount)
+        {
+            CurrentHealth -= amount;
         }
 
-        private void Update()
+        private void Die()
         {
-            if (_currentHealth <= 0)
-            {
-                Destroy(gameObject);
-            }
+            Destroy(gameObject);
         }
     }
 }
