@@ -1,4 +1,5 @@
-﻿using Util;
+﻿using HackNSlash.Scripts.Util;
+using Util;
 
 namespace HackNSlash.Scripts.Enemy
 {
@@ -6,6 +7,7 @@ namespace HackNSlash.Scripts.Enemy
     {
         protected override void Die()
         {
+            Score.scoreInstance.AddAmount(10);
             Destroy(gameObject);
         }
     }
