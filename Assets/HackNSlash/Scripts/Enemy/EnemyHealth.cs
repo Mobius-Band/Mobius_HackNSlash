@@ -8,6 +8,7 @@ namespace HackNSlash.Scripts.Enemy
         protected override void Die()
         {
             Score.scoreInstance.AddAmount(10);
+            EnemyWaveManager.waveManagerInstance._enemiesLeft -= 1;
             Destroy(gameObject);
         }
     }

@@ -1,19 +1,19 @@
+using Unity.Mathematics;
 using UnityEngine;
 
-namespace Enemy
+namespace HackNSlash.Scripts.Enemy
 {
     public class EnemySpawner : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
+        [SerializeField] private GameObject _enemy;
 
-        // Update is called once per frame
-        void Update()
+        public void SpawnEnemy()
         {
-        
+            var newEnemy = Instantiate(_enemy, transform.position, quaternion.identity);
+            newEnemy.SetActive(true);
+            EnemyWaveManager.waveManagerInstance._enemiesLeft += 1;
+
+
         }
     }
 }
