@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,7 @@ namespace HackNSlash.Scripts.Enemy
         public static EnemyWaveManager waveManagerInstance;
         
         [SerializeField] private EnemySpawner[] _enemySpawners;
+        [SerializeField] private TextMeshProUGUI _waveText;
         public int _enemiesLeft;
         private int _currentWave = 0;
 
@@ -19,6 +21,8 @@ namespace HackNSlash.Scripts.Enemy
 
         private void Update()
         {
+            _waveText.text = "wave: " + _currentWave + "/4";
+            
             if (_enemiesLeft <= 0)
             {
                 _currentWave += 1;

@@ -38,6 +38,11 @@ namespace Util
             _currentHealth = maxHealth;
         }
 
+        public void GainHealth(int amount)
+        {
+            CurrentHealth += amount;
+        }
+        
         public void TakeDamage(int amount)
         {
             CurrentHealth -= amount;
