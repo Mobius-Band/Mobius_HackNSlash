@@ -23,16 +23,14 @@ namespace HackNSlash.Scripts.Enemy
             {
                 _currentWave += 1;
 
-                if (_currentWave > 4)
+                if (_currentWave == 5)
                 {
-                    //SceneManager.LoadScene(2);
-                    return;
+                    // victory scene
+                    SceneManager.LoadScene(3);
                 }
                 
                 StartWave(_currentWave);
             }
-            
-            print(_enemiesLeft);
         }
 
         public void StartWave(int waveIndex)

@@ -7,8 +7,8 @@ namespace HackNSlash.Scripts.Player
     {
         protected override void Die()
         {
-            Scene scene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(scene.name);
+            // game over scene
+            SceneManager.LoadScene(2);
         }
     }
 }

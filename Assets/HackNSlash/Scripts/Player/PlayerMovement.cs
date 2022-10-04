@@ -51,7 +51,7 @@ namespace Player
                 return;
             }
             
-            _rigidbody.velocity = _moveDirection * _moveSpeed; 
+            _rigidbody.velocity = _moveDirection * _moveSpeed;
         }
 
         public void SuspendMovement()
