@@ -93,7 +93,6 @@ namespace Player
 
             foreach (Collider enemy in hitEnemies)
             {
-                // EzMsg.Send<IDamageable>(enemy.gameObject, (x) => x.TakeDamage(_damage));
                 enemy.gameObject.Send<IDamageable>(x => x.TakeDamage(_damage));
             }
         }

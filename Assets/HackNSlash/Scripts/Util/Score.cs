@@ -19,6 +19,7 @@ namespace HackNSlash.Scripts.Util
         public void AddAmount(int amount)
         {
             _amount += amount;
+            //TODO: Use event
             _scoreText.text = "score: " + _amount;
         }
     }

@@ -19,9 +19,11 @@ namespace HackNSlash.Scripts.Enemy
             waveManagerInstance = this;
         }
 
+        //TODO: Expor para edicao o número 5 (que determina a onda final)
         private void Update()
         {
             _waveText.text = "wave: " + _currentWave + "/4";
+            //TODO:  _waveText.text = $"wave: {_currentWave}/4";
             
             if (_enemiesLeft <= 0)
             {
@@ -29,6 +31,8 @@ namespace HackNSlash.Scripts.Enemy
 
                 if (_currentWave == 5)
                 {
+                    //TODO: This should be a method from another script
+                    //TODO: Make it an event
                     // victory scene
                     SceneManager.LoadScene(3);
                 }
@@ -37,6 +41,8 @@ namespace HackNSlash.Scripts.Enemy
             }
         }
 
+        //@choosecake
+        //TODO: Trocar por um foreach
         public void StartWave(int waveIndex)
         {
             switch (waveIndex)

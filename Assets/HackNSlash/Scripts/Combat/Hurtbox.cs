@@ -6,6 +6,7 @@ using Util;
 
 namespace Combat
 {
+
     public class Hurtbox : MonoBehaviour, IHitResponder
     {
         public event IHitResponder.HitReceived OnHitReceived;

@@ -13,15 +13,19 @@ namespace Combat
         Hit
     }
     
+    /// <summary>
+    /// This class is responsible for handling the collision of the character's weapon with the enemy.
+    ///  It is attached to a dedicated child of the character. Should be used in the AttackManager component.
+    /// </summary>
     public class Hitbox : MonoBehaviour
     {
-        
         public LayerMask mask;
-        [HideInInspector] public int damage;
         [Header("Debugging Colors")]
         public Color inactiveColor = Color.gray;
         public Color activeColor = Color.blue;
         public Color hitColor = Color.red;
+        [HideInInspector] public int damage;
+
         
         private ColliderState _state = ColliderState.Inactive;
         private Collider[] _hitColliders = {};
@@ -46,6 +50,25 @@ namespace Combat
             TryHitUpdate();
         }
 
+
+        
+        /// <summary>
+        ///  Uses the hitbox data to check for colliders and apply damage to them.
+        /// </summary>
+        public void TryHit()
+        {
+            _hitColliders = Physics.OverlapBox(
+                transform.position, transform.localScale / 2, transform.localRotation, mask);
+            if (_hitColliders.Length <= 0) 
+                return;
+            Array.ForEach(_hitColliders, 
+                hitCollider => hitCollider.gameObject.Send<IHitResponder>(_=>_.HitRespond(damage)));
+        }
+        
+        /// <summary>
+        ///   Uses the hitbox data to check for colliders and apply damage to them. Continuously check for collider.
+        ///    Should be used for continuous damage. Should be used in Update.
+        /// </summary>
         private void TryHitUpdate()
         {
             Physics.OverlapBoxNonAlloc(transform.position, transform.localScale/2, _hitColliders, transform.localRotation, mask);
@@ -60,35 +83,24 @@ namespace Combat
             }
         }
         
-        public void TryHit()
-        {
-            // int results = Physics.OverlapBoxNonAlloc(
-                // transform.position, transform.localScale/2,  _hitColliders, transform.localRotation, mask);
-
-            _hitColliders = Physics.OverlapBox(transform.position, transform.localScale / 2, transform.localRotation,
-                mask);
-            
-            if (_hitColliders.Length <= 0) 
-                return;
-            
-            foreach (var hitCollider in _hitColliders)
-            {
-                hitCollider.gameObject.Send<IHitResponder>(_=>_.HitRespond(damage));
-            }
-        }
-        
-        public void SetValues(Attack attack)
-        {
-            SetValues(attack.hitboxPosition, attack.hitboxSize, attack.damage);
-        }
-        
+        /// <summary>
+        /// Sets hitbox data
+        /// </summary>
         public void SetValues(Vector3 localPosition, Vector3 dimensions, int damage)
         {
             transform.localPosition = localPosition;
             transform.localScale = dimensions;
             this.damage = damage;
         }
-
+        
+        /// <summary>
+        /// Sets hitbox data, using an attack data object;
+        /// </summary>
+        public void SetValues(Attack attack)
+        {
+            SetValues(attack.hitboxPosition, attack.hitboxSize, attack.damage);
+        }
+        
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = StateColor;

@@ -4,7 +4,10 @@ using Util;
 
 namespace Combat
 {
-    public class Combatant : MonoBehaviour
+    /// <summary>
+    /// This class is responsible for connecting health and hurtbox for damage.
+    /// </summary>
+    public class HurtboxToHealthWorkflow : MonoBehaviour
     {
         [SerializeField] private Health health;
         [SerializeField] private Hurtbox hurtbox;

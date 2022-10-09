@@ -23,6 +23,7 @@ public class Menu : MonoBehaviour
     {
         if (_canClick)
             // game scene
+        //TODO: use scene ref
             SceneManager.LoadScene(1);
     }
     
@@ -41,6 +42,7 @@ public class Menu : MonoBehaviour
 
     private IEnumerator EnableButtonsDelay()
     {
+        //TODO: Delay time should be editable through editor
         yield return new WaitForSeconds(0.5f);
         _canClick = true;
     }

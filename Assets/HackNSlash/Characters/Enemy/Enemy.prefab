@@ -296,6 +296,7 @@ GameObject:
   - component: {fileID: 2882879165835375624}
   - component: {fileID: 1945491278599199748}
   - component: {fileID: 2873912139984920135}
+  - component: {fileID: 2943333921522794505}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -466,6 +467,20 @@ MonoBehaviour:
     animationName: FirstAttack
   hitbox: {fileID: 203895117}
   currentAttackIndex: 0
+--- !u!114 &2943333921522794505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756381825117879883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b146ebdab6d44c78bba82599642ed970, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 50
+  _playerHealth: {fileID: 0}
 --- !u!1 &1756381825118617420
 GameObject:
   m_ObjectHideFlags: 0
