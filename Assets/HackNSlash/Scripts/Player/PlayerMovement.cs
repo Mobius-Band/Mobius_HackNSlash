@@ -1,7 +1,5 @@
-using System;
-using Unity.VisualScripting;
+using HackNSlash.Scripts.Camera;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Player
 {
@@ -11,7 +9,10 @@ namespace Player
         [SerializeField] private float _moveSpeed;
         [Range(1, 50)] 
         [SerializeField] private float _rotationTime = 1f;
-        [SerializeField] private Transform _cameraHolder;
+
+        [SerializeField] private CameraManager _cameraManager;
+        [SerializeField] private Transform _perspectiveCameraHolder;
+        [SerializeField] private Transform _isometricCameraHolder;
         [SerializeField] private Animator _animator;
         public Vector2 MoveInput { get => _moveInput; set => _moveInput = value; }
         private Vector2 _moveInput;
@@ -35,7 +36,17 @@ namespace Player
 
             _animator.SetBool("isMoving", true);
 
-            float targetAngle = Mathf.Atan2(_moveInput.x, _moveInput.y) * Mathf.Rad2Deg + _cameraHolder.eulerAngles.y;
+            float targetAngle;
+
+            if (_cameraManager.isCurrentCameraPerspective)
+            {
+                targetAngle = Mathf.Atan2(_moveInput.x, _moveInput.y) * Mathf.Rad2Deg + _perspectiveCameraHolder.eulerAngles.y;
+            }
+            else
+            {
+                targetAngle = Mathf.Atan2(_moveInput.x, _moveInput.y) * Mathf.Rad2Deg + _cameraManager.currentCamera.transform.eulerAngles.y;
+            }
+            
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _rotationVelocity,
                 _rotationTime / 100);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);

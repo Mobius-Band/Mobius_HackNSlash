@@ -1,15 +1,19 @@
+using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-namespace Camera
+namespace HackNSlash.Scripts.Camera
 {
     public class CameraMovement : MonoBehaviour
     {
         [Range(0, 100)]
         [SerializeField] private float _sensitivity;
-        [SerializeField] private Transform _cameraHolder;
+        [SerializeField] private CameraManager _cameraManager;
+        [SerializeField] private Transform _perspectiveCameraHolder;
+        [SerializeField] private Transform _isometricCameraHolder;
         [SerializeField] private LayerMask _collisionMask;
-        private Transform _camera;
+        [SerializeField] private float _speed;
+        public Vector3 _cameraInitialPosition;
+        private UnityEngine.Camera _camera;
         private Vector3 rayDirection;
         private Vector2 _input;
         private Vector2 _fixedInput;
@@ -21,24 +25,48 @@ namespace Camera
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            _camera = _cameraHolder.GetChild(0);
         }
 
         private void LateUpdate()
         {
-            _camera.transform.LookAt(_cameraHolder);
+            if (_cameraManager.isCurrentCameraPerspective)
+            {
+                PerspectiveCameraMovement();
+            }
+            else
+            {
+                IsometricCameraMovement();
+            }
+        }
+
+        private void PerspectiveCameraMovement()
+        {
+            _camera = _cameraManager.currentCamera;
+            
+            _camera.transform.LookAt(_perspectiveCameraHolder);
         
             _fixedInput += _input * _sensitivity * Time.deltaTime;
             _fixedInput.y = Mathf.Clamp(_fixedInput.y, -40, 20);
             
-            _cameraHolder.rotation = Quaternion.Euler(_fixedInput.y, _fixedInput.x, 0);
-            
+            _perspectiveCameraHolder.rotation = Quaternion.Euler(_fixedInput.y, _fixedInput.x, 0);
+        }
+
+        private void IsometricCameraMovement()
+        {
+            _isometricCameraHolder.transform.position = Vector3.Lerp(
+                _isometricCameraHolder.transform.position,
+                new Vector3(transform.position.x, _isometricCameraHolder.transform.position.y, transform.position.z),
+                _speed * Time.deltaTime);
+        }
+
+        private void CameraCollision()
+        {
             // collision
             /*
-            rayDirection = (_camera.transform.position - transform.position).normalized;
+            rayDirection = (transform.position - _camera.transform.position).normalized;
             Ray ray = new Ray(_camera.transform.position, rayDirection);
-            RaycastHit hit;
-            if (Physics.SphereCast(ray, 10f, out hit, 7.5f, _collisionMask))
+            Debug.DrawLine(_camera.transform.position, ray.GetPoint(Vector3.Distance(_camera.transform.position, transform.position)), Color.magenta);
+            if (Physics.Raycast(ray, out RaycastHit hit, 5))
             {
                 print("hehehe");
                 distance = Mathf.Clamp(hit.distance, -5.0f, 7.5f);
@@ -48,7 +76,7 @@ namespace Camera
                 distance = 7.5f;
             }
             
-            transform.localPosition = Vector3.Lerp(transform.localPosition, transform.localPosition.normalized * (distance - 0.5f), Time.deltaTime * 100);
+            _camera.transform.localPosition = Vector3.Lerp(_camera.transform.localPosition, _camera.transform.localPosition.normalized * (distance - 0.5f), Time.deltaTime * 100);
             */
         }
     }

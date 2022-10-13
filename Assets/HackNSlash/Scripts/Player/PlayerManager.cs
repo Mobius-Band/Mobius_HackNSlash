@@ -1,4 +1,4 @@
-﻿using Camera;
+﻿using HackNSlash.Scripts.Camera;
 using UnityEngine;
 
 namespace Player
@@ -10,6 +10,7 @@ namespace Player
     public class PlayerManager : MonoBehaviour
     {
         [SerializeField] private PlayerAnimationManager _playerAnimationManager;
+        [SerializeField] private CameraManager _cameraManager;
         private PlayerInputManager _input;
         private PlayerAttack _attack;
         private PlayerMovement _movement;
@@ -26,6 +27,7 @@ namespace Player
         void Start()
         {
             _input.InputActions.Player.Attack.performed += _ => _attack.Attack();
+            _input.InputActions.Player.ChangeCamera.performed += _ => _cameraManager.ChangeCamera();
             _playerAnimationManager.OnAnimationEnd += _attack.EndAnimation;
             _playerAnimationManager.OnAnimationHit += _attack.Hit;
         }
