@@ -14,11 +14,12 @@ namespace Player
         [SerializeField] private Transform _cameraHolder;
         [SerializeField] private Animator _animator;
         public Vector2 MoveInput { get => _moveInput; set => _moveInput = value; }
+        public bool suspendMovement;
         private Vector2 _moveInput;
+        private Vector2 _rotationInput;
         private Vector3 _moveDirection;
         private Rigidbody _rigidbody;
         private float _rotationVelocity;
-        private bool _canMove = true;
 
         private void Awake()
         {
@@ -27,15 +28,10 @@ namespace Player
 
         private void Update()
         {
-            if (_moveInput == Vector2.zero | !_canMove)
-            {
-                _animator.SetBool("isMoving", false);
-                return;
-            }
+            _rotationInput += _moveInput;
+            _rotationInput.Normalize();
 
-            _animator.SetBool("isMoving", true);
-
-            float targetAngle = Mathf.Atan2(_moveInput.x, _moveInput.y) * Mathf.Rad2Deg + _cameraHolder.eulerAngles.y;
+            float targetAngle = Mathf.Atan2(_rotationInput.x, _rotationInput.y) * Mathf.Rad2Deg + _cameraHolder.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _rotationVelocity,
                 _rotationTime / 100);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
@@ -46,22 +42,22 @@ namespace Player
 
         private void FixedUpdate()
         {
-            if (_moveInput == Vector2.zero | !_canMove)
+            if (IsMoving())
             {
-                return;
+                _rigidbody.velocity = _moveDirection * _moveSpeed;
             }
-            
-            _rigidbody.velocity = _moveDirection * _moveSpeed;
         }
 
-        public void SuspendMovement()
+        public bool IsMoving()
         {
-            _canMove = false;
-        }
+            if (_moveInput == Vector2.zero || suspendMovement)
+            {
+                _animator.SetBool("isMoving", false);
+                return false;
+            }
 
-        public void RegainMovement()
-        {
-            _canMove = true;
+            _animator.SetBool("isMoving", true);
+            return true;
         }
     }
 }

@@ -45,7 +45,7 @@ namespace Player
         private IEnumerator Combo()
         {
             _isComboing = true;
-            _playerMovement.SuspendMovement();
+            _playerMovement.suspendMovement = true;
 
             _isAnimationOver = false;
             _animator.SetTrigger("goToNextAnimation");
@@ -105,7 +105,7 @@ namespace Player
         private void EndCombo()
         {
             _isComboing = false;
-            _playerMovement.RegainMovement();
+            _playerMovement.suspendMovement = false;
         }
 
         public void EndAnimation()
