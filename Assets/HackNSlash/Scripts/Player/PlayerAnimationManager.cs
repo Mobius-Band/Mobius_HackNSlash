@@ -7,6 +7,7 @@ public class PlayerAnimationManager : MonoBehaviour
 {
     public Action OnAnimationEnd;
     public Action OnAnimationHit;
+    public Action OnAnimationSuspendRotation;
     
     void EndAnimation()
     {
@@ -16,5 +17,10 @@ public class PlayerAnimationManager : MonoBehaviour
     void AnimationHit()
     {
         OnAnimationHit?.Invoke();
+    }
+    
+    void AnimationSuspendRotation()
+    {
+        OnAnimationSuspendRotation?.Invoke();
     }
 }

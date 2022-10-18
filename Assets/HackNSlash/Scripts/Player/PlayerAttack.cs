@@ -106,6 +106,7 @@ namespace Player
         {
             _isComboing = false;
             _playerMovement.suspendMovement = false;
+            _playerMovement.suspendRotation = false;
         }
 
         public void EndAnimation()

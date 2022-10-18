@@ -15,6 +15,7 @@ namespace Player
         [SerializeField] private Animator _animator;
         public Vector2 MoveInput { get => _moveInput; set => _moveInput = value; }
         public bool suspendMovement;
+        public bool suspendRotation;
         private Vector2 _moveInput;
         private Vector2 _rotationInput;
         private Vector3 _moveDirection;
@@ -34,7 +35,10 @@ namespace Player
             float targetAngle = Mathf.Atan2(_rotationInput.x, _rotationInput.y) * Mathf.Rad2Deg + _cameraHolder.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _rotationVelocity,
                 _rotationTime / 100);
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            if (!suspendRotation)
+            {
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            }
 
             _moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             _moveDirection.Normalize();
@@ -58,6 +62,11 @@ namespace Player
 
             _animator.SetBool("isMoving", true);
             return true;
+        }
+
+        public void SuspendRotation()
+        {
+            suspendRotation = true;
         }
     }
 }
