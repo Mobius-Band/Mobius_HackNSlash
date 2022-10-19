@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,19 +8,19 @@ namespace Player
 {
     public class PlayerMovement : MonoBehaviour
     {
-        [Range(1, 100)] 
-        [SerializeField] private float _moveSpeed;
-        [Range(1, 50)] 
-        [SerializeField] private float _rotationTime = 1f;
         [SerializeField] private Transform _cameraHolder;
         [SerializeField] private Animator _animator;
+        [SerializeField] private float _moveSpeed;
+        [SerializeField] private float _rotationTime = 1f;
+        [SerializeField] private float _dashSpeed;
+        [SerializeField] private float _dashTime;
+        [HideInInspector] public bool suspendMovement;
+        [HideInInspector] public bool suspendRotation;
         public Vector2 MoveInput { get => _moveInput; set => _moveInput = value; }
-        public bool suspendMovement;
-        public bool suspendRotation;
+        private Rigidbody _rigidbody;
         private Vector2 _moveInput;
         private Vector2 _rotationInput;
         private Vector3 _moveDirection;
-        private Rigidbody _rigidbody;
         private float _rotationVelocity;
 
         private void Awake()
@@ -33,8 +34,8 @@ namespace Player
             _rotationInput.Normalize();
 
             float targetAngle = Mathf.Atan2(_rotationInput.x, _rotationInput.y) * Mathf.Rad2Deg + _cameraHolder.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _rotationVelocity,
-                _rotationTime / 100);
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _rotationVelocity, _rotationTime / 100);
+            
             if (!suspendRotation)
             {
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
@@ -52,6 +53,23 @@ namespace Player
             }
         }
 
+        public void Dash()
+        {
+            StartCoroutine(DashCoroutine());
+        }
+
+        private IEnumerator DashCoroutine()
+        {
+            SuspendRotation();
+            SuspendMovement();
+
+            _rigidbody.velocity = transform.forward * (_moveSpeed + _dashSpeed);
+            yield return new WaitForSeconds(_dashTime);
+            
+            RegainRotation();
+            RegainMovement();
+        }
+
         public bool IsMoving()
         {
             if (_moveInput == Vector2.zero || suspendMovement)
@@ -67,6 +85,21 @@ namespace Player
         public void SuspendRotation()
         {
             suspendRotation = true;
+        }
+
+        private void SuspendMovement()
+        {
+            suspendMovement = true;
+        }
+        
+        public void RegainRotation()
+        {
+            suspendRotation = false;
+        }
+
+        private void RegainMovement()
+        {
+            suspendMovement = false;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Camera;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 namespace Player
@@ -26,6 +27,8 @@ namespace Player
         void Start()
         {
             _input.InputActions.Player.Attack.performed += _ => _attack.Attack();
+            _input.InputActions.Player.Dash.performed += _ => _movement.Dash();
+            
             _playerAnimationManager.OnAnimationEnd += _attack.EndAnimation;
             _playerAnimationManager.OnAnimationHit += _attack.Hit;
             _playerAnimationManager.OnAnimationSuspendRotation += _movement.SuspendRotation;
