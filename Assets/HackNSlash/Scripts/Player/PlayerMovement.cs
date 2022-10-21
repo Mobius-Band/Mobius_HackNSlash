@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,8 +15,6 @@ namespace Player
         [SerializeField] private float _rotationTime = 1f;
         [SerializeField] private float _dashSpeed;
         [SerializeField] private float _dashTime;
-        [HideInInspector] public bool suspendMovement;
-        [HideInInspector] public bool suspendRotation;
         public Vector2 MoveInput { get => _moveInput; set => _moveInput = value; }
         private PlayerAttack _playerAttack;
         private Rigidbody _rigidbody;
@@ -24,6 +23,8 @@ namespace Player
         private Vector3 _moveDirection;
         private float _rotationVelocity;
         private bool _isDashing;
+        private bool _suspendMovement;
+        private bool _suspendRotation;
 
         private void Awake()
         {
@@ -39,7 +40,7 @@ namespace Player
             float targetAngle = Mathf.Atan2(_rotationInput.x, _rotationInput.y) * Mathf.Rad2Deg + _cameraHolder.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _rotationVelocity, _rotationTime / 100);
             
-            if (!suspendRotation)
+            if (!_suspendRotation)
             {
                 transform.rotation = Quaternion.Euler(0f, angle, 0f);
             }
@@ -58,7 +59,7 @@ namespace Player
 
         public void Dash()
         {
-            if (!_playerAttack._isAttacking && !_isDashing)
+            if (!_isDashing)
             {
                 StartCoroutine(DashCoroutine());
             }
@@ -67,20 +68,24 @@ namespace Player
         private IEnumerator DashCoroutine()
         {
             _isDashing = true;
+            _playerAttack.EndCombo();
+            _playerAttack.SuspendAttack();
             SuspendRotation();
             SuspendMovement();
 
             _rigidbody.velocity = transform.forward * (_moveSpeed + _dashSpeed);
+            
             yield return new WaitForSeconds(_dashTime);
-
+            
             _isDashing = false;
+            _playerAttack.RegainAttack();
             RegainRotation();
             RegainMovement();
         }
 
         public bool IsMoving()
         {
-            if (_moveInput == Vector2.zero || suspendMovement)
+            if (_moveInput == Vector2.zero || _suspendMovement)
             {
                 _animator.SetBool("isMoving", false);
                 return false;
@@ -92,22 +97,22 @@ namespace Player
 
         public void SuspendRotation()
         {
-            suspendRotation = true;
+            _suspendRotation = true;
         }
 
-        private void SuspendMovement()
+        public void SuspendMovement()
         {
-            suspendMovement = true;
+            _suspendMovement = true;
         }
         
         public void RegainRotation()
         {
-            suspendRotation = false;
+            _suspendRotation = false;
         }
 
-        private void RegainMovement()
+        public void RegainMovement()
         {
-            suspendMovement = false;
+            _suspendMovement = false;
         }
     }
 }

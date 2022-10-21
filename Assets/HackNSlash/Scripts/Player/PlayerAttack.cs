@@ -20,6 +20,7 @@ namespace Player
         private PlayerMovement _playerMovement;
         private bool _isComboing = false;
         private bool _isAnimationOver = false;
+        private bool _suspendAttack;
 
         private void Awake()
         {
@@ -33,22 +34,22 @@ namespace Player
 
         public void Attack()
         {
-            if (!_isAttacking)
+            if (!_isAttacking && !_suspendAttack)
             {
                 _isAttacking = true;
                 Invoke("StopAttacking", 0.5f);
-            }
-            
-            if (!_isComboing)
-            {
-                StartCoroutine(Combo());
+                
+                if (!_isComboing)
+                {
+                    StartCoroutine(Combo());
+                }
             }
         }
 
         private IEnumerator Combo()
         {
             _isComboing = true;
-            _playerMovement.suspendMovement = true;
+            _playerMovement.SuspendMovement();
 
             _isAnimationOver = false;
             _animator.SetTrigger("goToNextAnimation");
@@ -100,15 +101,26 @@ namespace Player
             }
         }
 
-        public void StopAttacking()
+        private void StopAttacking()
         {
             _isAttacking = false;
         }
 
-        private void EndCombo()
+        public void SuspendAttack()
         {
+            _suspendAttack = true;
+        }
+
+        public void RegainAttack()
+        {
+            _suspendAttack = false;
+        }
+
+        public void EndCombo()
+        {
+            StopAttacking();
             _isComboing = false;
-            _playerMovement.suspendMovement = false;
+            _playerMovement.RegainMovement();
             _playerMovement.RegainRotation();
         }
 
