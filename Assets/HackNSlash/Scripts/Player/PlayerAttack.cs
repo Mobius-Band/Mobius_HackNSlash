@@ -33,8 +33,11 @@ namespace Player
 
         public void Attack()
         {
-            _isAttacking = true;
-            Invoke("StopAttacking", 0.5f);
+            if (!_isAttacking)
+            {
+                _isAttacking = true;
+                Invoke("StopAttacking", 0.5f);
+            }
             
             if (!_isComboing)
             {
@@ -106,7 +109,7 @@ namespace Player
         {
             _isComboing = false;
             _playerMovement.suspendMovement = false;
-            _playerMovement.suspendRotation = false;
+            _playerMovement.RegainRotation();
         }
 
         public void EndAnimation()
