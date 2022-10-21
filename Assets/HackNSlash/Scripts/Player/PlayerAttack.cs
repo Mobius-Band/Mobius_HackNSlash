@@ -16,8 +16,8 @@ namespace Player
         [SerializeField] private Animator _animator;
         [SerializeField] private float _attackRange = 0.5f;
         [SerializeField] private int _damage = 5;
+        public bool _isAttacking = false;
         private PlayerMovement _playerMovement;
-        private bool _isAttacking = false;
         private bool _isComboing = false;
         private bool _isAnimationOver = false;
 

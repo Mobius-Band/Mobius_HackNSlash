@@ -17,15 +17,18 @@ namespace Player
         [HideInInspector] public bool suspendMovement;
         [HideInInspector] public bool suspendRotation;
         public Vector2 MoveInput { get => _moveInput; set => _moveInput = value; }
+        private PlayerAttack _playerAttack;
         private Rigidbody _rigidbody;
         private Vector2 _moveInput;
         private Vector2 _rotationInput;
         private Vector3 _moveDirection;
         private float _rotationVelocity;
+        private bool _isDashing;
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
+            _playerAttack = GetComponent<PlayerAttack>();
         }
 
         private void Update()
@@ -55,17 +58,22 @@ namespace Player
 
         public void Dash()
         {
-            StartCoroutine(DashCoroutine());
+            if (!_playerAttack._isAttacking && !_isDashing)
+            {
+                StartCoroutine(DashCoroutine());
+            }
         }
 
         private IEnumerator DashCoroutine()
         {
+            _isDashing = true;
             SuspendRotation();
             SuspendMovement();
 
             _rigidbody.velocity = transform.forward * (_moveSpeed + _dashSpeed);
             yield return new WaitForSeconds(_dashTime);
-            
+
+            _isDashing = false;
             RegainRotation();
             RegainMovement();
         }
