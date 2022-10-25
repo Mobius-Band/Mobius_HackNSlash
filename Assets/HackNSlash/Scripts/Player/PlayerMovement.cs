@@ -73,7 +73,7 @@ namespace Player
             SuspendRotation();
             SuspendMovement();
 
-            _rigidbody.velocity = transform.forward * (_moveSpeed + _dashSpeed);
+            _rigidbody.velocity = _moveDirection * (_moveSpeed + _dashSpeed);
             
             yield return new WaitForSeconds(_dashTime);
             
