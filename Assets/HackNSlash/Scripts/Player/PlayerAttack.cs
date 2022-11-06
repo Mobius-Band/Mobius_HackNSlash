@@ -16,10 +16,11 @@ namespace Player
         [SerializeField] private Animator _animator;
         [SerializeField] private float _attackRange = 0.5f;
         [SerializeField] private int _damage = 5;
+        public bool _isAttacking = false;
         private PlayerMovement _playerMovement;
-        private bool _isAttacking = false;
         private bool _isComboing = false;
         private bool _isAnimationOver = false;
+        private bool _suspendAttack;
 
         private void Awake()
         {
@@ -33,12 +34,15 @@ namespace Player
 
         public void Attack()
         {
-            _isAttacking = true;
-            Invoke("StopAttacking", 0.5f);
-            
-            if (!_isComboing)
+            if (!_isAttacking && !_suspendAttack)
             {
-                StartCoroutine(Combo());
+                _isAttacking = true;
+                Invoke("StopAttacking", 0.5f);
+                
+                if (!_isComboing)
+                {
+                    StartCoroutine(Combo());
+                }
             }
         }
 
@@ -97,15 +101,27 @@ namespace Player
             }
         }
 
-        public void StopAttacking()
+        private void StopAttacking()
         {
             _isAttacking = false;
         }
 
-        private void EndCombo()
+        public void SuspendAttack()
         {
+            _suspendAttack = true;
+        }
+
+        public void RegainAttack()
+        {
+            _suspendAttack = false;
+        }
+
+        public void EndCombo()
+        {
+            StopAttacking();
             _isComboing = false;
             _playerMovement.RegainMovement();
+            _playerMovement.RegainRotation();
         }
 
         public void EndAnimation()

@@ -1,4 +1,5 @@
-using HackNSlash.Scripts.Camera;
+using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Player
@@ -9,70 +10,115 @@ namespace Player
         [SerializeField] private float _moveSpeed;
         [Range(1, 50)] 
         [SerializeField] private float _rotationTime = 1f;
-
-        [SerializeField] private CameraManager _cameraManager;
-        [SerializeField] private Transform _perspectiveCameraHolder;
-        [SerializeField] private Transform _isometricCameraHolder;
+        // [SerializeField] private Transform _perspectiveCameraHolder;
+        // [SerializeField] private Transform _isometricCameraHolder;
+        [SerializeField] private Transform _cameraHolder;
         [SerializeField] private Animator _animator;
+        [SerializeField] private float _dashSpeed;
+        [SerializeField] private float _dashTime;
         public Vector2 MoveInput { get => _moveInput; set => _moveInput = value; }
-        private Vector2 _moveInput;
-        private Vector3 _moveDirection;
+        private PlayerAttack _playerAttack;
         private Rigidbody _rigidbody;
+        private Vector2 _moveInput;
+        private Vector2 _rotationInput;
+        private Vector3 _moveDirection;
         private float _rotationVelocity;
-        private bool _canMove = true;
+        private bool _isDashing;
+        private bool _isMovementSuspended;
+        private bool _isRotationSuspended;
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
+            _playerAttack = GetComponent<PlayerAttack>();
         }
 
         private void Update()
         {
-            if (_moveInput == Vector2.zero | !_canMove)
-            {
-                _animator.SetBool("isMoving", false);
-                return;
-            }
-
-            _animator.SetBool("isMoving", true);
-
-            float targetAngle;
-
-            if (_cameraManager.isCurrentCameraPerspective)
-            {
-                targetAngle = Mathf.Atan2(_moveInput.x, _moveInput.y) * Mathf.Rad2Deg + _perspectiveCameraHolder.eulerAngles.y;
-            }
-            else
-            {
-                targetAngle = Mathf.Atan2(_moveInput.x, _moveInput.y) * Mathf.Rad2Deg + _cameraManager.currentCamera.transform.eulerAngles.y;
-            }
+            _rotationInput += _moveInput;
+            _rotationInput.Normalize();
             
+            // _animator.SetBool("isMoving", true);
+
+            float targetAngle = Mathf.Atan2(_moveInput.x, _moveInput.y) * Mathf.Rad2Deg + _cameraHolder.eulerAngles.y;
+
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _rotationVelocity,
                 _rotationTime / 100);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
-
+            
+            if (!_isRotationSuspended)
+            {
+                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            }
+            
             _moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             _moveDirection.Normalize();
         }
 
         private void FixedUpdate()
         {
-            if (_moveInput == Vector2.zero | !_canMove)
+            if (IsMoving())
             {
-                return;
+                _rigidbody.velocity = _moveDirection * _moveSpeed;
             }
+        }
+
+        public void Dash()
+        {
+            if (!_isDashing)
+            {
+                StartCoroutine(DashCoroutine());
+            }
+        }
+
+        private IEnumerator DashCoroutine()
+        {
+            _isDashing = true;
+            _playerAttack.EndCombo();
+            _playerAttack.SuspendAttack();
+            SuspendRotation();
+            SuspendMovement();
+
+            _rigidbody.velocity = _moveDirection * (_moveSpeed + _dashSpeed);
             
-            _rigidbody.velocity = _moveDirection * _moveSpeed;
+            yield return new WaitForSeconds(_dashTime);
+            
+            _isDashing = false;
+            _playerAttack.RegainAttack();
+            RegainRotation();
+            RegainMovement();
+        }
+
+        public bool IsMoving()
+        {
+            if (_moveInput == Vector2.zero || _isMovementSuspended)
+            {
+                _animator.SetBool("isMoving", false);
+                return false;
+            }
+
+            _animator.SetBool("isMoving", true);
+            return true;
+        }
+
+        public void SuspendRotation()
+        {
+            _isRotationSuspended = true;
         }
 
         public void SuspendMovement()
         {
-            _canMove = false;
+            _isMovementSuspended = true;
+        }
+        
+        public void RegainRotation()
+        {
+            _isRotationSuspended = false;
         }
 
         public void RegainMovement()
         {
-            _canMove = true;
+            _isMovementSuspended = false;
         }
     }
 }

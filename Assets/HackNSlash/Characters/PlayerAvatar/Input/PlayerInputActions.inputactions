@@ -33,9 +33,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ChangeCamera",
+                    "name": "Dash",
                     "type": "Button",
-                    "id": "daea87b4-3819-4f56-ac9e-d5067d3b7b26",
+                    "id": "b65ab125-9414-49b5-a638-e294b61b7566",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -155,12 +155,34 @@
                 },
                 {
                     "name": "",
-                    "id": "3dce864d-6077-400b-b4d0-db81e1ac6c9b",
-                    "path": "<Keyboard>/#(C)",
+                    "id": "b905533b-fd90-4066-8416-3d1bce13d72b",
+                    "path": "<Keyboard>/leftShift",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "ChangeCamera",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c4e60aa0-c291-4e4f-adb6-458872789753",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "397dceba-6e5a-4760-a6bf-0de0aeb68409",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
