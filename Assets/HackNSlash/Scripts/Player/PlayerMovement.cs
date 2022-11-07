@@ -20,12 +20,13 @@ namespace Player
         private PlayerAttack _playerAttack;
         private Rigidbody _rigidbody;
         private Vector2 _moveInput;
-        private Vector2 _rotationInput;
+        // private Vector2 _rotationInput;
         private Vector3 _moveDirection;
         private float _rotationVelocity;
         private bool _isDashing;
         private bool _isMovementSuspended;
         private bool _isRotationSuspended;
+        private float _rotationAngle;
 
         private void Awake()
         {
@@ -35,24 +36,19 @@ namespace Player
 
         private void Update()
         {
-            _rotationInput += _moveInput;
-            _rotationInput.Normalize();
+            float movementAngle = Mathf.Atan2(_moveInput.x, _moveInput.y) * Mathf.Rad2Deg + _cameraHolder.eulerAngles.y;
             
-            // _animator.SetBool("isMoving", true);
+            _moveDirection = Quaternion.Euler(0f, movementAngle, 0f) * Vector3.forward;
+            _moveDirection.Normalize();
 
-            float targetAngle = Mathf.Atan2(_moveInput.x, _moveInput.y) * Mathf.Rad2Deg + _cameraHolder.eulerAngles.y;
-
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _rotationVelocity,
+            if (_moveInput == Vector2.zero)
+                return;
+            _rotationAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, movementAngle, ref _rotationVelocity,
                 _rotationTime / 100);
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
-            
             if (!_isRotationSuspended)
             {
-                transform.rotation = Quaternion.Euler(0f, angle, 0f);
+                transform.rotation = Quaternion.Euler(0f, _rotationAngle, 0f);
             }
-            
-            _moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            _moveDirection.Normalize();
         }
 
         private void FixedUpdate()

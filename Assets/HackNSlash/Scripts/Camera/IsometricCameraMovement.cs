@@ -1,19 +1,43 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class IsometricCameraMovement : MonoBehaviour
+namespace HackNSlash.Scripts.Camera
 {
-    [SerializeField] private Transform _player;
-    private float _speed = 5f;
-    
-    private void LateUpdate()
+    public class IsometricCameraMovement : MonoBehaviour
     {
-        transform.position = Vector3.Lerp(
-            transform.position, 
-            new Vector3(_player.transform.position.x, transform.position.y, _player.transform.position.z), 
-            _speed * Time.deltaTime
-            );
+        [SerializeField] private Transform _focus;
+        [SerializeField] private float _speed;
+        private Vector3 rayDirection;
+        private Vector2 _input;
+        private Vector2 _fixedInput;
+        private float distance;
+        private Vector3 _initialPosition;
+        private Vector3 _initialFocusPosition;
+        private Vector3 _currentFocusPosition;
+        
+        void Start()
+        {
+            _initialPosition = transform.position;
+            _initialFocusPosition = _focus.position;
+        }
+
+        void Update()
+        {
+            _currentFocusPosition = _focus.position;
+        }
+
+        void LateUpdate()
+        {
+            FollowFocus();
+        }
+
+        private void FollowFocus()
+        {
+            Vector3 targetPosition = _currentFocusPosition + _initialPosition - _initialFocusPosition;
+            transform.position = Vector3.Lerp(
+                transform.position,
+                targetPosition,
+                _speed * Time.deltaTime);
+        }
     }
 }

@@ -5,51 +5,53 @@ namespace HackNSlash.Scripts.Camera
 {
     public class CameraMovement : MonoBehaviour
     {
-        [Range(0, 100)]
-        [SerializeField] private float _sensitivity;
-        [SerializeField] private CameraManager _cameraManager;
-        [SerializeField] private Transform _perspectiveCameraHolder;
+        // [Range(0, 100)]
+        // [SerializeField] private float _sensitivity;
+        // [SerializeField] private CameraManager _cameraManager;
+        // [SerializeField] private Transform _perspectiveCameraHolder;
         [SerializeField] private Transform _isometricCameraHolder;
-        [SerializeField] private LayerMask _collisionMask;
+        // [SerializeField] private LayerMask _collisionMask;
         [SerializeField] private float _speed;
-        public Vector3 _cameraInitialPosition;
-        private UnityEngine.Camera _camera;
+        // public Vector3 _cameraInitialPosition;
+        // private UnityEngine.Camera _camera;
         private Vector3 rayDirection;
         private Vector2 _input;
         private Vector2 _fixedInput;
         private float distance;
 
-        public Vector2 Input { set => _input = value; }
+        // public Vector2 Input { set => _input = value; }
         
-        private void Awake()
-        {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
+        // private void Awake()
+        // {
+        //     Cursor.visible = false;
+        //     Cursor.lockState = CursorLockMode.Locked;
+        // }
 
         private void LateUpdate()
         {
-            if (_cameraManager.isCurrentCameraPerspective)
-            {
-                PerspectiveCameraMovement();
-            }
-            else
-            {
-                IsometricCameraMovement();
-            }
+            IsometricCameraMovement();
+
+            // if (_cameraManager.isCurrentCameraPerspective)
+            // {
+            //     PerspectiveCameraMovement();
+            // }
+            // else
+            // {
+                // IsometricCameraMovement();
+            // }
         }
 
-        private void PerspectiveCameraMovement()
-        {
-            _camera = _cameraManager.currentCamera;
-            
-            _camera.transform.LookAt(_perspectiveCameraHolder);
-        
-            _fixedInput += _input * _sensitivity * Time.deltaTime;
-            _fixedInput.y = Mathf.Clamp(_fixedInput.y, -40, 20);
-            
-            _perspectiveCameraHolder.rotation = Quaternion.Euler(_fixedInput.y, _fixedInput.x, 0);
-        }
+        // private void PerspectiveCameraMovement()
+        // {
+        //     _camera = _cameraManager.currentCamera;
+        //     
+        //     _camera.transform.LookAt(_perspectiveCameraHolder);
+        //
+        //     _fixedInput += _input * _sensitivity * Time.deltaTime;
+        //     _fixedInput.y = Mathf.Clamp(_fixedInput.y, -40, 20);
+        //     
+        //     _perspectiveCameraHolder.rotation = Quaternion.Euler(_fixedInput.y, _fixedInput.x, 0);
+        // }
 
         private void IsometricCameraMovement()
         {
