@@ -344,8 +344,8 @@ MonoBehaviour:
   _rotationTime: 10
   _cameraHolder: {fileID: 0}
   _animator: {fileID: 4957899228246454920}
-  _dashSpeed: 0
-  _dashTime: 0
+  _dashSpeed: 50
+  _dashTime: 0.7
 --- !u!114 &7999598550545812496
 MonoBehaviour:
   m_ObjectHideFlags: 0

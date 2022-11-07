@@ -940,12 +940,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 494049758}
   m_CullTransparentMesh: 1
---- !u!4 &494956604 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7999598549863259295, guid: 4f87f1521805a794aa6863705018b061,
-    type: 3}
-  m_PrefabInstance: {fileID: 7999598550174513712}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &694403974
 GameObject:
   m_ObjectHideFlags: 0
@@ -1638,7 +1632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameras:
-  - {fileID: 7999598550174513713}
+  - {fileID: 0}
   - {fileID: 18955844}
   - {fileID: 0}
   - {fileID: 0}
@@ -1646,6 +1640,7 @@ MonoBehaviour:
   _playerMovement: {fileID: 7999598550174513722}
   _cameraMovement: {fileID: 0}
   isCurrentCameraPerspective: 0
+  _currentCameraIndex: 0
 --- !u!1 &1510286608
 GameObject:
   m_ObjectHideFlags: 0
@@ -3396,24 +3391,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7999598550545812523, guid: 4f87f1521805a794aa6863705018b061,
         type: 3}
-      propertyPath: _dashTime
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 7999598550545812523, guid: 4f87f1521805a794aa6863705018b061,
-        type: 3}
-      propertyPath: _dashSpeed
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7999598550545812523, guid: 4f87f1521805a794aa6863705018b061,
-        type: 3}
-      propertyPath: _moveSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7999598550545812523, guid: 4f87f1521805a794aa6863705018b061,
-        type: 3}
       propertyPath: _cameraHolder
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 18955841}
     - target: {fileID: 7999598550545812523, guid: 4f87f1521805a794aa6863705018b061,
         type: 3}
       propertyPath: _cameraManager
@@ -3428,7 +3408,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _perspectiveCameraHolder
       value: 
-      objectReference: {fileID: 494956604}
+      objectReference: {fileID: 0}
     - target: {fileID: 7999598550545812524, guid: 4f87f1521805a794aa6863705018b061,
         type: 3}
       propertyPath: m_Drag
@@ -3596,12 +3576,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f87f1521805a794aa6863705018b061, type: 3}
---- !u!20 &7999598550174513713 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 7999598550484119545, guid: 4f87f1521805a794aa6863705018b061,
-    type: 3}
-  m_PrefabInstance: {fileID: 7999598550174513712}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7999598550174513714 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7999598550174513714, guid: 4f87f1521805a794aa6863705018b061,
