@@ -27,6 +27,7 @@ namespace Player
         private bool _isMovementSuspended;
         private bool _isRotationSuspended;
         private float _rotationAngle;
+        private float movementAngle;
 
         private void Awake()
         {
@@ -36,29 +37,46 @@ namespace Player
 
         private void Update()
         {
-            float movementAngle = Mathf.Atan2(_moveInput.x, _moveInput.y) * Mathf.Rad2Deg + _cameraHolder.eulerAngles.y;
-            
-            _moveDirection = Quaternion.Euler(0f, movementAngle, 0f) * Vector3.forward;
-            _moveDirection.Normalize();
+            if (_isMovementSuspended)
+            {
+                return;
+            }
+            DefineMovementAngle(out movementAngle, ref _moveDirection);
 
             if (_moveInput == Vector2.zero)
-                return;
-            _rotationAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, movementAngle, ref _rotationVelocity,
-                _rotationTime / 100);
-            if (!_isRotationSuspended)
             {
-                transform.rotation = Quaternion.Euler(0f, _rotationAngle, 0f);
+                return;
             }
+            if (_isMovementSuspended)
+            {
+                return;
+            }
+            LerpRotate(movementAngle);
         }
 
         private void FixedUpdate()
         {
-            if (IsMoving())
+            if (SetMovingAnimation())
             {
                 _rigidbody.velocity = _moveDirection * _moveSpeed;
             }
         }
+        
+        private void LerpRotate(float movementAngle)
+        {
+            _rotationAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, movementAngle, ref _rotationVelocity,
+                _rotationTime / 100);
+            transform.rotation = Quaternion.Euler(0f, _rotationAngle, 0f);
+        }
 
+        private void DefineMovementAngle(out float movementAngle, ref Vector3 moveDirection)
+        {
+            movementAngle = Mathf.Atan2(_moveInput.x, _moveInput.y) * Mathf.Rad2Deg + _cameraHolder.eulerAngles.y;
+
+            moveDirection = Quaternion.Euler(0f, movementAngle, 0f) * Vector3.forward;
+            moveDirection.Normalize();
+        }
+        
         public void Dash()
         {
             if (!_isDashing)
@@ -69,13 +87,17 @@ namespace Player
 
         private IEnumerator DashCoroutine()
         {
+
             _isDashing = true;
             _playerAttack.EndCombo();
             _playerAttack.SuspendAttack();
             SuspendRotation();
             SuspendMovement();
 
-            _rigidbody.velocity = _moveDirection * (_moveSpeed + _dashSpeed);
+            transform.rotation = Quaternion.Euler(0f, movementAngle, 0f);
+            var direction = transform.forward;
+            _rigidbody.velocity = direction * (_moveSpeed + _dashSpeed);
+
             
             yield return new WaitForSeconds(_dashTime);
             
@@ -85,7 +107,7 @@ namespace Player
             RegainMovement();
         }
 
-        public bool IsMoving()
+        public bool SetMovingAnimation()
         {
             if (_moveInput == Vector2.zero || _isMovementSuspended)
             {

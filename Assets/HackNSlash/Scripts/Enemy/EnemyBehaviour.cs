@@ -7,7 +7,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(AttackManager))]
 public class EnemyBehaviour : MonoBehaviour
 {
-    [SerializeField] private Transform _player;
+    [HideInInspector] public Transform target;
     [SerializeField] private float _chasePeriod = 1f;
     [SerializeField] private float _attackEnablingAngle = 30f;
 
@@ -29,7 +29,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void Update()
     {
-        _canAttack = Vector3.SqrMagnitude(_player.position - transform.position) <=
+        _canAttack = Vector3.SqrMagnitude(target.position - transform.position) <=
                       Mathf.Pow(_navMeshAgent.stoppingDistance, 2);
         if (_canAttack)
         {
@@ -39,9 +39,9 @@ public class EnemyBehaviour : MonoBehaviour
 
     private IEnumerator CheckForTarget()
     {
-        while (true)
+        while (target != null)
         {
-            _navMeshAgent.SetDestination(_player.position);
+            _navMeshAgent.SetDestination(target.position);
             yield return new WaitForSeconds(_chasePeriod);
         }
     }
