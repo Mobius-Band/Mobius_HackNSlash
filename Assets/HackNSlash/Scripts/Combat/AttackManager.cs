@@ -1,4 +1,5 @@
-﻿using Unity.VisualScripting;
+﻿using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Combat
@@ -18,15 +19,18 @@ namespace Combat
                  "press 'Set Current Attack' to visualize the current attack´s hitbox")]
         [SerializeField] private int currentAttackIndex = 0;
         
-        private Animator _animator;
-        
         public Attack CurrentAttack => attacks[currentAttackIndex];
 
-        void Awake()
+        private ComboManager _comboManager;
+        private bool _suspendAttack;
+        private bool _regainAttack;
+        private bool _isAttacking;
+
+        private void Start()
         {
-            _animator = GetComponent<Animator>();
+            _comboManager = GetComponent<ComboManager>();
         }
-        
+
         [Tooltip("Apply current attack's position and size to the hitbox, for debugging. " +
                  "Use this to visualize the current attack's hitbox in the editor.")]
         [ContextMenu("Set Current Attack")]
@@ -36,7 +40,15 @@ namespace Combat
             {
                 hitbox = GetComponent<Hitbox>();
             }
-            hitbox.SetValues(CurrentAttack);
+
+            if (_comboManager)
+            {
+                hitbox.SetValues(_comboManager.CurrentComboAttack);
+            }
+            else
+            {
+                hitbox.SetValues(CurrentAttack);
+            }
         }
         
         /// <summary>
@@ -63,18 +75,27 @@ namespace Combat
         public void Attack(int index)
         {
             SetCurrentAttack(index);
-            _animator.SetBool(CurrentAttack.animationName, true);
+            _isAttacking = true;
         }
-
-        //TODO fix this. Is currently called by animation event
-        public void StopAttack()
-        {
-            _animator.SetBool(CurrentAttack.animationName, false);
-        }
-
+        
         private void OnValidate()
         {
             SetCurrentAttack();
+        }
+
+        public void StopAttack()
+        {
+            _isAttacking = false;
+        }
+
+        public void SuspendAttack()
+        {
+            _suspendAttack = true;
+        }
+
+        public void RegainAttack()
+        {
+            _suspendAttack = false;
         }
     }
 }

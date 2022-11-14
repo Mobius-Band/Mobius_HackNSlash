@@ -5,15 +5,9 @@ using UnityEngine;
 
 public class PlayerAnimationManager : MonoBehaviour
 {
-    public Action OnAnimationEnd;
     public Action OnAnimationHit;
     public Action OnAnimationSuspendRotation;
     
-    void EndAnimation()
-    {
-        OnAnimationEnd?.Invoke();
-    }
-
     void AnimationHit()
     {
         OnAnimationHit?.Invoke();

@@ -1,3 +1,4 @@
+using Combat;
 using UnityEngine;
 
 namespace Player
@@ -9,22 +10,22 @@ namespace Player
     {
         [SerializeField] private PlayerAnimationManager _playerAnimationManager;
         private PlayerInputManager _input;
-        private PlayerAttack _attack;
+        private ComboManager _comboManager;
         private PlayerMovement _movement;
         
         void Awake()
         {
             _input = GetComponent<PlayerInputManager>();
-            _attack = GetComponent<PlayerAttack>();
+            _comboManager = GetComponent<ComboManager>();
             _movement = GetComponent<PlayerMovement>();
         }
         
         void Start()
         {
-            _input.InputActions.Player.Attack.performed += _ => _attack.Attack();
+            _input.InputActions.Player.Attack.performed += _ => _comboManager.ComboAttack();
             _input.InputActions.Player.Dash.performed += _ => _movement.Dash();
-            _playerAnimationManager.OnAnimationEnd += _attack.EndAnimation;
-            _playerAnimationManager.OnAnimationHit += _attack.Hit;
+            
+            //_playerAnimationManager.OnAnimationHit += _attack.Hit;
             _playerAnimationManager.OnAnimationSuspendRotation += _movement.SuspendRotation;
         }
         
