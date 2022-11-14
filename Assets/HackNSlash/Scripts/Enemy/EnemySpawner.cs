@@ -1,3 +1,4 @@
+using System;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -5,17 +6,16 @@ namespace HackNSlash.Scripts.Enemy
 {
     public class EnemySpawner : MonoBehaviour
     {
-        [SerializeField] private GameObject _enemy;
+        [SerializeField] private GameObject _enemyPrefab;
+        
+        public Action OnEnemySpawned;
 
-        public void SpawnEnemy()
+        public GameObject SpawnEnemy(Transform enemyParent)
         {
-            //TODO: Make all new enemies children of the same parent
-            var newEnemy = Instantiate(_enemy, transform.position, quaternion.identity);
+            var newEnemy = Instantiate(_enemyPrefab, transform.position, quaternion.identity, enemyParent);
             newEnemy.SetActive(true);
-            //TODO: How can you guarantee there is a EnemyWaveManager instance in a scene?
-            EnemyWaveManager.waveManagerInstance._enemiesLeft += 1;
-
-
+            OnEnemySpawned?.Invoke();
+            return newEnemy;
         }
     }
 }

@@ -10,6 +10,7 @@ namespace Util
         private const int MinHealth = 0;
         
         public Action<int, int> OnHealthChanged;
+        public Action OnDeath;
 
         public int CurrentHealth
         {
