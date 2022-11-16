@@ -65,7 +65,7 @@ namespace Combat
         public void Attack(int index)
         {
             _isAttacking = true;
-            //animator.SetTrigger("goToNextAttackAnimation");
+            animator.SetTrigger("goToNextAttackAnimation");
             SetCurrentAttack(index);
         }
         
