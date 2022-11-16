@@ -37,20 +37,13 @@ namespace Player
 
         private void Update()
         {
-            if (_isMovementSuspended)
-            {
-                return;
-            }
             DefineMovementAngle(out movementAngle, ref _moveDirection);
 
-            if (_moveInput == Vector2.zero)
+            if (_moveInput == Vector2.zero || _isRotationSuspended)
             {
                 return;
             }
-            if (_isMovementSuspended)
-            {
-                return;
-            }
+            
             LerpRotate(movementAngle);
         }
 
