@@ -11,25 +11,19 @@ namespace Combat
     public class AttackManager : MonoBehaviour
     {
         [Tooltip("A collection of attacks that can be used by this character.")]
-        [SerializeField] Attack[] attacks; 
+        public Attack[] attacks; 
         [Tooltip("The hitbox that will be used to detect collisions with other objects - this should be a child of the character")]
         [SerializeField] private Hitbox hitbox;
         [Tooltip("An integer that represents the index of the current attack in the attacks array" +
                  "\n In editor: Click the three dots in the upper right corner of this component and " +
                  "press 'Set Current Attack' to visualize the current attack´s hitbox")]
-        [SerializeField] private int currentAttackIndex = 0;
+        public int currentAttackIndex = 0;
         
         public Attack CurrentAttack => attacks[currentAttackIndex];
 
-        private ComboManager _comboManager;
-        private bool _suspendAttack;
-        private bool _regainAttack;
-        private bool _isAttacking;
-
-        private void Start()
-        {
-            _comboManager = GetComponent<ComboManager>();
-        }
+        [HideInInspector] public bool _isAttacking;
+        public Animator animator;
+        private bool _isAttackSuspended;
 
         [Tooltip("Apply current attack's position and size to the hitbox, for debugging. " +
                  "Use this to visualize the current attack's hitbox in the editor.")]
@@ -41,11 +35,7 @@ namespace Combat
                 hitbox = GetComponent<Hitbox>();
             }
 
-            if (_comboManager)
-            {
-                hitbox.SetValues(_comboManager.CurrentComboAttack);
-            }
-            else
+            if (currentAttackIndex < attacks.Length)
             {
                 hitbox.SetValues(CurrentAttack);
             }
@@ -74,8 +64,9 @@ namespace Combat
         /// <param name="index"> Index of the attack in the attacks array</param>
         public void Attack(int index)
         {
-            SetCurrentAttack(index);
             _isAttacking = true;
+            animator.SetTrigger("goToNextAttackAnimation");
+            SetCurrentAttack(index);
         }
         
         private void OnValidate()
@@ -90,12 +81,12 @@ namespace Combat
 
         public void SuspendAttack()
         {
-            _suspendAttack = true;
+            _isAttackSuspended = true;
         }
 
         public void RegainAttack()
         {
-            _suspendAttack = false;
+            _isAttackSuspended = false;
         }
     }
 }

@@ -1,41 +1,64 @@
 ﻿using System;
 using Player;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Combat
 {
-    public class ComboManager : MonoBehaviour
+    public class ComboManager : AttackManager
     {
-        [SerializeField] private Combo[] combos;
-        private AttackManager _attackManager;
         private PlayerMovement _playerMovement;
-        private int _currentComboIndex;
-        private int _currentAttackIndex;
-        private bool _isReturningToIdle;
-        
-        public Attack CurrentComboAttack => combos[_currentComboIndex].comboAttacks[_currentAttackIndex];
+        private bool isReturningToIdle;
+        private bool _hasNextAttack;
 
         private void Start()
         {
-            _attackManager = GetComponent<AttackManager>();
+            _playerMovement = GetComponent<PlayerMovement>();
         }
 
-        public void ComboAttack()
+        public void HandleAttackInput()
+        {
+            if (isReturningToIdle || currentAttackIndex == 0)
+            {
+                ComboAttack();
+                
+                if (!_hasNextAttack)
+                {
+                    SetNextAttack();
+                }
+            }
+        }
+        
+        private void ComboAttack()
         {
             _playerMovement.SuspendMovement();
-
-            if (_currentAttackIndex != 0)
+            _playerMovement.RegainRotation();
+            Attack(currentAttackIndex);
+            isReturningToIdle = false;
+            _hasNextAttack = false;
+        }
+        
+        public void SetNextAttack()
+        {
+            _hasNextAttack = true;
+            if (currentAttackIndex < attacks.Length)
             {
-                _currentAttackIndex++;
+                currentAttackIndex++;
             }
-            
-            _attackManager.Attack(_currentAttackIndex);
         }
 
         public void EndCombo()
         {
-            _attackManager.StopAttack();
+            isReturningToIdle = false;
+            currentAttackIndex = 0;
+            StopAttack();
             _playerMovement.RegainMovement();
+            _playerMovement.RegainRotation();
+        }
+
+        public void SetReturningToIdle()
+        {
+            isReturningToIdle = true;
             _playerMovement.RegainRotation();
         }
     }

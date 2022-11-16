@@ -5,8 +5,16 @@ using UnityEngine;
 
 public class PlayerAnimationManager : MonoBehaviour
 {
+    public Action OnAnimationEndCombo;
     public Action OnAnimationHit;
     public Action OnAnimationSuspendRotation;
+    public Action OnAnimationReturningToIdle;
+
+    
+    void AnimationEndCombo()
+    {
+        OnAnimationEndCombo?.Invoke();
+    }
     
     void AnimationHit()
     {
@@ -16,5 +24,10 @@ public class PlayerAnimationManager : MonoBehaviour
     void AnimationSuspendRotation()
     {
         OnAnimationSuspendRotation?.Invoke();
+    }
+
+    void AnimationReturningToIdle()
+    {
+        OnAnimationReturningToIdle?.Invoke();
     }
 }

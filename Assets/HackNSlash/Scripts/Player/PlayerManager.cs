@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Player
 {
     [RequireComponent(typeof(PlayerInputManager))]
-    [RequireComponent(typeof(PlayerAttack))]
+    [RequireComponent(typeof(ComboManager))]
     [RequireComponent(typeof(PlayerMovement))]
     public class PlayerManager : MonoBehaviour
     {
@@ -22,11 +22,13 @@ namespace Player
         
         void Start()
         {
-            _input.InputActions.Player.Attack.performed += _ => _comboManager.ComboAttack();
+            _input.InputActions.Player.Attack.performed += _ => _comboManager.HandleAttackInput();
             _input.InputActions.Player.Dash.performed += _ => _movement.Dash();
-            
+
+            _playerAnimationManager.OnAnimationEndCombo += _comboManager.EndCombo;
             //_playerAnimationManager.OnAnimationHit += _attack.Hit;
             _playerAnimationManager.OnAnimationSuspendRotation += _movement.SuspendRotation;
+            _playerAnimationManager.OnAnimationReturningToIdle += _comboManager.SetReturningToIdle;
         }
         
         void Update()

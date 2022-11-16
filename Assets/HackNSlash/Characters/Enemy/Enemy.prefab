@@ -47,10 +47,10 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 256
-  damage: 1
   inactiveColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   activeColor: {r: 0, g: 0, b: 1, a: 1}
   hitColor: {r: 1, g: 0, b: 0, a: 1}
+  damage: 1
 --- !u!1 &754824679
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,7 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f31b0886bced44144993afd413f75736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
+  target: {fileID: 0}
   _chasePeriod: 0.5
   _attackEnablingAngle: 30
 --- !u!95 &2882879165835375624
@@ -464,9 +464,10 @@ MonoBehaviour:
   - damage: 1
     hitboxPosition: {x: 0, y: 0, z: 1.27}
     hitboxSize: {x: 1.6, y: 1.6, z: 1.7}
-    animationName: FirstAttack
   hitbox: {fileID: 203895117}
   currentAttackIndex: 0
+  _isAttacking: 0
+  animator: {fileID: 2882879165835375624}
 --- !u!114 &2943333921522794505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -480,7 +481,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
-  _playerHealth: {fileID: 0}
 --- !u!1 &1756381825118617420
 GameObject:
   m_ObjectHideFlags: 0
