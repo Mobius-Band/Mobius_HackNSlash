@@ -6,7 +6,7 @@ namespace Util
     public abstract class Health : MonoBehaviour
     {
         [SerializeField] private int maxHealth = 100;
-        private int _currentHealth;
+        [SerializeField] private int _currentHealth;
         private const int MinHealth = 0;
         
         public Action<int, int> OnHealthChanged;

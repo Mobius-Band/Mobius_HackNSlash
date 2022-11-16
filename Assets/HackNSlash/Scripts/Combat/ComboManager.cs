@@ -18,13 +18,11 @@ namespace Combat
 
         public void HandleAttackInput()
         {
-            if (isReturningToIdle || currentAttackIndex == 0)
+            if (isReturningToIdle || !_isAttacking)
             {
-                ComboAttack();
-                
-                if (!_hasNextAttack)
+                if (currentAttackIndex < attacks.Length)
                 {
-                    SetNextAttack();
+                    ComboAttack();
                 }
             }
         }
@@ -34,13 +32,13 @@ namespace Combat
             _playerMovement.SuspendMovement();
             _playerMovement.RegainRotation();
             Attack(currentAttackIndex);
+            PlayAttackAnimation();
+            SetNextAttack();
             isReturningToIdle = false;
-            _hasNextAttack = false;
         }
         
         public void SetNextAttack()
         {
-            _hasNextAttack = true;
             if (currentAttackIndex < attacks.Length)
             {
                 currentAttackIndex++;
@@ -60,6 +58,22 @@ namespace Combat
         {
             isReturningToIdle = true;
             _playerMovement.RegainRotation();
+        }
+        
+        private void PlayAttackAnimation()
+        {
+            switch (currentAttackIndex)
+            {
+                case 0:
+                    animator.Play("attack1");
+                    break;
+                case 1:
+                    animator.Play("attack2");
+                    break;
+                case 2:
+                    animator.Play("attack3");
+                    break;
+            }
         }
     }
 }

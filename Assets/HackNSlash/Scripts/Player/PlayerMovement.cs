@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Combat;
 using UnityEngine;
 
 namespace Player
@@ -17,7 +18,7 @@ namespace Player
         [SerializeField] private float _dashSpeed;
         [SerializeField] private float _dashTime;
         public Vector2 MoveInput { get => _moveInput; set => _moveInput = value; }
-        private PlayerAttack _playerAttack;
+        private ComboManager _comboManager;
         private Rigidbody _rigidbody;
         private Vector2 _moveInput;
         // private Vector2 _rotationInput;
@@ -32,7 +33,7 @@ namespace Player
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
-            _playerAttack = GetComponent<PlayerAttack>();
+            _comboManager = GetComponent<ComboManager>();
         }
 
         private void Update()
@@ -49,7 +50,7 @@ namespace Player
 
         private void FixedUpdate()
         {
-            if (SetMovingAnimation())
+            if (CanMove() && !_isMovementSuspended)
             {
                 _rigidbody.velocity = _moveDirection * _moveSpeed;
             }
@@ -82,8 +83,8 @@ namespace Player
         {
 
             _isDashing = true;
-            _playerAttack.EndCombo();
-            _playerAttack.SuspendAttack();
+            _comboManager.EndCombo();
+            _comboManager.SuspendAttack();
             SuspendRotation();
             SuspendMovement();
 
@@ -95,20 +96,18 @@ namespace Player
             yield return new WaitForSeconds(_dashTime);
             
             _isDashing = false;
-            _playerAttack.RegainAttack();
+            _comboManager.RegainAttack();
             RegainRotation();
             RegainMovement();
         }
 
-        public bool SetMovingAnimation()
+        public bool CanMove()
         {
             if (_moveInput == Vector2.zero || _isMovementSuspended)
             {
-                _animator.SetBool("isMoving", false);
                 return false;
             }
 
-            _animator.SetBool("isMoving", true);
             return true;
         }
 

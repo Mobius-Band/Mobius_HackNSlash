@@ -35,7 +35,7 @@ namespace Combat
                 hitbox = GetComponent<Hitbox>();
             }
 
-            if (currentAttackIndex < attacks.Length)
+            if (currentAttackIndex < attacks.Length - 1)
             {
                 hitbox.SetValues(CurrentAttack);
             }
@@ -65,7 +65,7 @@ namespace Combat
         public void Attack(int index)
         {
             _isAttacking = true;
-            animator.SetTrigger("goToNextAttackAnimation");
+            //animator.SetTrigger("goToNextAttackAnimation");
             SetCurrentAttack(index);
         }
         

@@ -167,7 +167,7 @@ Transform:
   m_GameObject: {fileID: 1147130096485138616}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1.25}
-  m_LocalScale: {x: 2, y: 1.5, z: 1.25}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7999598550545812525}
@@ -702,13 +702,13 @@ MonoBehaviour:
   attacks:
   - damage: 5
     hitboxPosition: {x: 0, y: 0, z: 1.25}
-    hitboxSize: {x: 2, y: 1.5, z: 1.25}
+    hitboxSize: {x: 1.5, y: 1.5, z: 1.25}
   - damage: 5
     hitboxPosition: {x: 0, y: 0, z: 1.25}
     hitboxSize: {x: 2, y: 1.5, z: 1.25}
   - damage: 10
     hitboxPosition: {x: 0, y: 0, z: 1.25}
-    hitboxSize: {x: 2, y: 1.5, z: 1.25}
+    hitboxSize: {x: 1.5, y: 1.5, z: 1.75}
   hitbox: {fileID: 893670863654729700}
   currentAttackIndex: 0
   _isAttacking: 0
