@@ -87,7 +87,7 @@ namespace Player
         private IEnumerator DashCoroutine()
         {
             var direction = transform.forward;
-            if (IsMoving())
+            if (IsMoving() || _comboManager._isAttacking)
             {
                 transform.rotation = Quaternion.Euler(0f, movementAngle, 0f);
                 direction = _moveDirection;
