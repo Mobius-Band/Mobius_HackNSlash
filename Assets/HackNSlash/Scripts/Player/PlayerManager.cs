@@ -26,7 +26,7 @@ namespace Player
             _input.InputActions.Player.Dash.performed += _ => _movement.Dash();
 
             _playerAnimationManager.OnAnimationEndCombo += _comboManager.EndCombo;
-            //_playerAnimationManager.OnAnimationHit += _attack.Hit;
+            _playerAnimationManager.OnAnimationHit += _comboManager.ToggleHitbox;
             _playerAnimationManager.OnAnimationSuspendRotation += _movement.SuspendRotation;
             _playerAnimationManager.OnAnimationReturningToIdle += _comboManager.SetReturningToIdle;
         }
