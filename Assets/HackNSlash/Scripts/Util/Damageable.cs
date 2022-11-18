@@ -18,8 +18,6 @@ namespace Util
         public IEnumerable TakeDamage(int damage)
         {
             _health.TakeDamage(damage);
-            StartCoroutine(GetComponent<TakeDamageEffect>().TakeDamageEffectCoroutine());
-            StartCoroutine(GetComponent<Knockback>().ApplyKnockback(damage));
             yield break;
         }
     }

@@ -1,4 +1,5 @@
 using System;
+using Enemy;
 using UnityEngine;
 
 namespace Util
@@ -7,6 +8,7 @@ namespace Util
     {
         [SerializeField] private int maxHealth = 100;
         [SerializeField] private int _currentHealth;
+        private TakeDamageEffect _takeDamageEffect;
         private const int MinHealth = 0;
         
         public Action<int, int> OnHealthChanged;
@@ -36,6 +38,7 @@ namespace Util
 
         void Start()
         {
+            _takeDamageEffect = GetComponent<TakeDamageEffect>();
             _currentHealth = maxHealth;
         }
 
@@ -47,6 +50,7 @@ namespace Util
         public void TakeDamage(int amount)
         {
             CurrentHealth -= amount;
+            StartCoroutine(_takeDamageEffect.TakeDamageEffectCoroutine());
         }
 
         protected abstract void Die();

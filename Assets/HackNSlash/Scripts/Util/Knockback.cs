@@ -6,11 +6,11 @@ namespace Util
 {
     public class Knockback : MonoBehaviour
     {
-        [SerializeField] private Transform _knocker;
         [SerializeField] private float _knockbackForce = 50;
-        public IEnumerator ApplyKnockback(int amount)
+        
+        public IEnumerator ApplyKnockback(Transform hitObject, int amount)
         {
-            GetComponent<Rigidbody>().AddForce(_knocker.forward * amount * _knockbackForce, ForceMode.Acceleration);
+            hitObject.GetComponent<Rigidbody>().AddForce(transform.forward * amount * _knockbackForce, ForceMode.Acceleration);
             yield break;
         }
     }
