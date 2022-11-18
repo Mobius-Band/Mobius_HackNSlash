@@ -50,9 +50,14 @@ namespace Player
 
         private void FixedUpdate()
         {
-            if (CanMove())
+            if (IsMoving())
             {
+                _animator.SetBool("isMoving", true);
                 _rigidbody.velocity = _moveDirection * _moveSpeed;
+            }
+            else
+            {
+                _animator.SetBool("isMoving", false);
             }
         }
         
@@ -101,7 +106,7 @@ namespace Player
             RegainMovement();
         }
 
-        public bool CanMove()
+        public bool IsMoving()
         {
             if (_moveInput == Vector2.zero || _isMovementSuspended)
             {
@@ -113,7 +118,6 @@ namespace Player
 
         public void SuspendRotation()
         {
-            print("SuspendRotation");
             _isRotationSuspended = true;
         }
 
@@ -124,7 +128,6 @@ namespace Player
         
         public void RegainRotation()
         {
-            print("RegainRotation");
             _isRotationSuspended = false;
         }
 
