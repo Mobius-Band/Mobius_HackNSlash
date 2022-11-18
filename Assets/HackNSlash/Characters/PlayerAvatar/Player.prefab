@@ -670,6 +670,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  _currentHealth: 0
   gameOverSceneReference:
     sceneAsset: {fileID: 102900000, guid: b630b27b3243c1142a80d215b5b736dc, type: 3}
     sceneAssetGuidHex: b630b27b3243c1142a80d215b5b736dc

@@ -86,29 +86,34 @@ namespace Player
 
         private IEnumerator DashCoroutine()
         {
-
+            var direction = transform.forward;
+            if (IsMoving())
+            {
+                transform.rotation = Quaternion.Euler(0f, movementAngle, 0f);
+                direction = _moveDirection;
+            }
+            
             _isDashing = true;
             _comboManager.EndCombo();
             _comboManager.SuspendAttack();
             SuspendRotation();
             SuspendMovement();
 
-            transform.rotation = Quaternion.Euler(0f, movementAngle, 0f);
-            var direction = transform.forward;
             _rigidbody.velocity = direction * (_moveSpeed + _dashSpeed);
-
+            
+            _animator.Play("Dash");
             
             yield return new WaitForSeconds(_dashTime);
             
-            _isDashing = false;
             _comboManager.RegainAttack();
             RegainRotation();
             RegainMovement();
+            _isDashing = false;
         }
 
         public bool IsMoving()
         {
-            if (_moveInput == Vector2.zero || _isMovementSuspended)
+            if (_moveInput == Vector2.zero || _isMovementSuspended || _isDashing)
             {
                 return false;
             }
