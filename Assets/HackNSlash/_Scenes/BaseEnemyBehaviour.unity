@@ -2652,6 +2652,36 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 400750109}
+    - target: {fileID: 2633767070648000369, guid: 8337bdffb4bb9f44c84e6c80c020b183,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2633767070648000369, guid: 8337bdffb4bb9f44c84e6c80c020b183,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2633767070648000369, guid: 8337bdffb4bb9f44c84e6c80c020b183,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2633767070648000369, guid: 8337bdffb4bb9f44c84e6c80c020b183,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2633767070648000369, guid: 8337bdffb4bb9f44c84e6c80c020b183,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2633767070648000369, guid: 8337bdffb4bb9f44c84e6c80c020b183,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8337bdffb4bb9f44c84e6c80c020b183, type: 3}
 --- !u!1 &1756381824401406759 stripped

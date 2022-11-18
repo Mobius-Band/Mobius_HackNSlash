@@ -50,7 +50,7 @@ namespace Player
 
         private void FixedUpdate()
         {
-            if (CanMove() && !_isMovementSuspended)
+            if (CanMove())
             {
                 _rigidbody.velocity = _moveDirection * _moveSpeed;
             }
@@ -113,6 +113,7 @@ namespace Player
 
         public void SuspendRotation()
         {
+            print("SuspendRotation");
             _isRotationSuspended = true;
         }
 
@@ -123,6 +124,7 @@ namespace Player
         
         public void RegainRotation()
         {
+            print("RegainRotation");
             _isRotationSuspended = false;
         }
 
