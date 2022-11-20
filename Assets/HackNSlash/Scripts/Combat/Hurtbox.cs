@@ -1,8 +1,5 @@
 ﻿using System.Collections;
-using Enemy;
-using Ez;
 using UnityEngine;
-using Util;
 
 namespace Combat
 {
@@ -11,9 +8,9 @@ namespace Combat
     {
         public event IHitResponder.HitReceived OnHitReceived;
 
-        public IEnumerable HitRespond(int damage)
+        public IEnumerable HitRespond(HitEventArgs hitEventArgs)
         { 
-            OnHitReceived?.Invoke(damage);
+            OnHitReceived?.Invoke(hitEventArgs);
             yield break;
         }
     }

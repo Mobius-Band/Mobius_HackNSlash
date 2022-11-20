@@ -35,7 +35,7 @@ namespace Combat
                 hitbox = GetComponent<Hitbox>();
             }
 
-            if (currentAttackIndex < attacks.Length - 1)
+            if (currentAttackIndex < attacks.Length || currentAttackIndex >= 0)
             {
                 hitbox.SetValues(CurrentAttack);
             }
@@ -55,7 +55,7 @@ namespace Combat
         /// </summary>
         public void ToggleHitbox()
         {
-            hitbox.TryHit();
+            hitbox.TryHit(transform);
         }
         
         /// <summary>

@@ -8,10 +8,9 @@ namespace Util
     {
         [SerializeField] private float _knockbackForce = 50;
         
-        public IEnumerator ApplyKnockback(Transform hitObject, int amount)
+        public void ApplyKnockback(Transform hitObject, int amount)
         {
-            hitObject.GetComponent<Rigidbody>().AddForce(transform.forward * amount * _knockbackForce, ForceMode.Acceleration);
-            yield break;
+            transform.GetComponent<Rigidbody>().AddForce(hitObject.forward * amount * _knockbackForce, ForceMode.Acceleration);
         }
     }
 }

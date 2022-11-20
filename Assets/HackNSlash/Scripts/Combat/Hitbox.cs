@@ -55,14 +55,19 @@ namespace Combat
         /// <summary>
         ///  Uses the hitbox data to check for colliders and apply damage to them.
         /// </summary>
-        public void TryHit()
+        public void TryHit(Transform attackerTransform)
         {
             _hitColliders = Physics.OverlapBox(
                 transform.position, transform.localScale / 2, transform.localRotation, mask);
             if (_hitColliders.Length <= 0) 
                 return;
+            var hitEventArgs = new HitEventArgs()
+            {
+                Damage = damage,
+                hitOriginTransform = attackerTransform
+            };
             Array.ForEach(_hitColliders, 
-                hitCollider => hitCollider.gameObject.Send<IHitResponder>(_=>_.HitRespond(damage)));
+                hitCollider => hitCollider.gameObject.Send<IHitResponder>(_=>_.HitRespond(hitEventArgs)));
         }
         
         /// <summary>
