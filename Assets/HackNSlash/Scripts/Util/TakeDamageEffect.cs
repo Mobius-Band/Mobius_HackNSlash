@@ -11,7 +11,7 @@ namespace Enemy
         [SerializeField] private float _speed;
         private Material _originalMaterial;
 
-        private void Start()
+        private void Awake()
         {
             _originalMaterial = _meshRenderer.material;
         }

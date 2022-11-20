@@ -1,4 +1,5 @@
-﻿using Unity.VisualScripting;
+﻿using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Combat
@@ -10,23 +11,20 @@ namespace Combat
     public class AttackManager : MonoBehaviour
     {
         [Tooltip("A collection of attacks that can be used by this character.")]
-        [SerializeField] Attack[] attacks; 
+        public Attack[] attacks; 
         [Tooltip("The hitbox that will be used to detect collisions with other objects - this should be a child of the character")]
         [SerializeField] private Hitbox hitbox;
         [Tooltip("An integer that represents the index of the current attack in the attacks array" +
                  "\n In editor: Click the three dots in the upper right corner of this component and " +
                  "press 'Set Current Attack' to visualize the current attack´s hitbox")]
-        [SerializeField] private int currentAttackIndex = 0;
-        
-        private Animator _animator;
+        public int currentAttackIndex = 0;
         
         public Attack CurrentAttack => attacks[currentAttackIndex];
 
-        void Awake()
-        {
-            _animator = GetComponent<Animator>();
-        }
-        
+        [HideInInspector] public bool _isAttacking;
+        public Animator animator;
+        private bool _isAttackSuspended;
+
         [Tooltip("Apply current attack's position and size to the hitbox, for debugging. " +
                  "Use this to visualize the current attack's hitbox in the editor.")]
         [ContextMenu("Set Current Attack")]
@@ -36,7 +34,11 @@ namespace Combat
             {
                 hitbox = GetComponent<Hitbox>();
             }
-            hitbox.SetValues(CurrentAttack);
+
+            if (currentAttackIndex < attacks.Length || currentAttackIndex >= 0)
+            {
+                hitbox.SetValues(CurrentAttack);
+            }
         }
         
         /// <summary>
@@ -53,7 +55,7 @@ namespace Combat
         /// </summary>
         public void ToggleHitbox()
         {
-            hitbox.TryHit();
+            hitbox.TryHit(transform);
         }
         
         /// <summary>
@@ -62,19 +64,29 @@ namespace Combat
         /// <param name="index"> Index of the attack in the attacks array</param>
         public void Attack(int index)
         {
+            _isAttacking = true;
+            animator.SetTrigger("goToNextAttackAnimation");
             SetCurrentAttack(index);
-            _animator.SetBool(CurrentAttack.animationName, true);
         }
-
-        //TODO fix this. Is currently called by animation event
-        public void StopAttack()
-        {
-            _animator.SetBool(CurrentAttack.animationName, false);
-        }
-
+        
         private void OnValidate()
         {
             SetCurrentAttack();
+        }
+
+        public void StopAttack()
+        {
+            _isAttacking = false;
+        }
+
+        public void SuspendAttack()
+        {
+            _isAttackSuspended = true;
+        }
+
+        public void RegainAttack()
+        {
+            _isAttackSuspended = false;
         }
     }
 }

@@ -1,31 +1,34 @@
+using Combat;
 using UnityEngine;
 
 namespace Player
 {
     [RequireComponent(typeof(PlayerInputManager))]
-    [RequireComponent(typeof(PlayerAttack))]
+    [RequireComponent(typeof(ComboManager))]
     [RequireComponent(typeof(PlayerMovement))]
     public class PlayerManager : MonoBehaviour
     {
         [SerializeField] private PlayerAnimationManager _playerAnimationManager;
         private PlayerInputManager _input;
-        private PlayerAttack _attack;
+        private ComboManager _comboManager;
         private PlayerMovement _movement;
         
         void Awake()
         {
             _input = GetComponent<PlayerInputManager>();
-            _attack = GetComponent<PlayerAttack>();
+            _comboManager = GetComponent<ComboManager>();
             _movement = GetComponent<PlayerMovement>();
         }
         
         void Start()
         {
-            _input.InputActions.Player.Attack.performed += _ => _attack.Attack();
+            _input.InputActions.Player.Attack.performed += _ => _comboManager.HandleAttackInput();
             _input.InputActions.Player.Dash.performed += _ => _movement.Dash();
-            _playerAnimationManager.OnAnimationEnd += _attack.EndAnimation;
-            _playerAnimationManager.OnAnimationHit += _attack.Hit;
+
+            _playerAnimationManager.OnAnimationEndCombo += _comboManager.EndCombo;
+            _playerAnimationManager.OnAnimationHit += _comboManager.ToggleHitbox;
             _playerAnimationManager.OnAnimationSuspendRotation += _movement.SuspendRotation;
+            _playerAnimationManager.OnAnimationReturningToIdle += _comboManager.SetReturningToIdle;
         }
         
         void Update()

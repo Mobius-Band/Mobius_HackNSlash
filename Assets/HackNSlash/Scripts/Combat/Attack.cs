@@ -7,11 +7,11 @@ namespace Combat
     /// This class is used to store the data of a single attack.
     /// </summary>
     [Serializable]
-    public struct Attack
+    public class Attack
     {
         public int damage;
         public Vector3 hitboxPosition;
         public Vector3 hitboxSize;
-        public String animationName;
+        //public Animation animation;
     }
 }

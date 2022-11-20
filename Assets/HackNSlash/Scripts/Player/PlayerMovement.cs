@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Combat;
 using UnityEngine;
 
 namespace Player
@@ -17,7 +18,7 @@ namespace Player
         [SerializeField] private float _dashSpeed;
         [SerializeField] private float _dashTime;
         public Vector2 MoveInput { get => _moveInput; set => _moveInput = value; }
-        private PlayerAttack _playerAttack;
+        private ComboManager _comboManager;
         private Rigidbody _rigidbody;
         private Vector2 _moveInput;
         // private Vector2 _rotationInput;
@@ -32,33 +33,31 @@ namespace Player
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
-            _playerAttack = GetComponent<PlayerAttack>();
+            _comboManager = GetComponent<ComboManager>();
         }
 
         private void Update()
         {
-            if (_isMovementSuspended)
-            {
-                return;
-            }
             DefineMovementAngle(out movementAngle, ref _moveDirection);
 
-            if (_moveInput == Vector2.zero)
+            if (_moveInput == Vector2.zero || _isRotationSuspended)
             {
                 return;
             }
-            if (_isMovementSuspended)
-            {
-                return;
-            }
+            
             LerpRotate(movementAngle);
         }
 
         private void FixedUpdate()
         {
-            if (SetMovingAnimation())
+            if (IsMoving())
             {
+                _animator.SetBool("isMoving", true);
                 _rigidbody.velocity = _moveDirection * _moveSpeed;
+            }
+            else
+            {
+                _animator.SetBool("isMoving", false);
             }
         }
         
@@ -87,35 +86,38 @@ namespace Player
 
         private IEnumerator DashCoroutine()
         {
-
+            var direction = transform.forward;
+            if (IsMoving() || _comboManager._isAttacking)
+            {
+                transform.rotation = Quaternion.Euler(0f, movementAngle, 0f);
+                direction = _moveDirection;
+            }
+            
             _isDashing = true;
-            _playerAttack.EndCombo();
-            _playerAttack.SuspendAttack();
+            _comboManager.EndCombo();
+            _comboManager.SuspendAttack();
             SuspendRotation();
             SuspendMovement();
 
-            transform.rotation = Quaternion.Euler(0f, movementAngle, 0f);
-            var direction = transform.forward;
             _rigidbody.velocity = direction * (_moveSpeed + _dashSpeed);
-
+            
+            _animator.Play("Dash");
             
             yield return new WaitForSeconds(_dashTime);
             
-            _isDashing = false;
-            _playerAttack.RegainAttack();
+            _comboManager.RegainAttack();
             RegainRotation();
             RegainMovement();
+            _isDashing = false;
         }
 
-        public bool SetMovingAnimation()
+        public bool IsMoving()
         {
-            if (_moveInput == Vector2.zero || _isMovementSuspended)
+            if (_moveInput == Vector2.zero || _isMovementSuspended || _isDashing)
             {
-                _animator.SetBool("isMoving", false);
                 return false;
             }
 
-            _animator.SetBool("isMoving", true);
             return true;
         }
 
