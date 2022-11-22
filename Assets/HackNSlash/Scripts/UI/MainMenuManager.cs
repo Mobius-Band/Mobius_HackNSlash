@@ -7,28 +7,47 @@ public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] gamePlayElements;
     [SerializeField] private GameObject[] mainMenuElements;
-    [SerializeField] private GameObject[] pauseMenuElements;
     [SerializeField] private GameObject controlScreen;
-    [SerializeField] private GameObject pauseMenu;
     [Header("Main Menu Buttons")]
     [SerializeField] private Button playButton;
     [SerializeField] private Button controlsButton;
     [SerializeField] private Button quitButton;
-    
+    [Space] 
+    [SerializeField] private Button[] returnButtons;
+
     private void Start()
     {
+        if (GameManager.Instance.isBooting)
+        {
+            ShowMainMenu();
+            SetMainMenuButtons();  
+            Array.ForEach(returnButtons, button => button.onClick.AddListener(ShowMainMenu));
+        }
+        else
+        {
+            HideAllMenus();
+            StartGameplay();
+        }
+        
+    }
+
+    private void ShowMainMenu()
+    {
+        controlScreen.SetActive(false);
         Array.ForEach(gamePlayElements, ctx => ctx.SetActive(false));
         Array.ForEach(mainMenuElements, ctx => ctx.SetActive(true));
-        Time.timeScale = 0;
-        
-        SetMainMenuButtons();
+        GameManager.Instance.SetMousePointerForGameplay(false);
+        GameManager.Instance.PauseGame();
     }
 
     public void StartGameplay()
     {
         Array.ForEach(gamePlayElements, ctx => ctx.SetActive(true));
         Array.ForEach(mainMenuElements, ctx => ctx.SetActive(false));
-        Time.timeScale = 1;
+        controlScreen.SetActive(false);
+        GameManager.Instance.isBooting = false;
+        GameManager.Instance.SetMousePointerForGameplay(true);
+        GameManager.Instance.ResumeGame();
     }
     
     public void ShowControls()
@@ -41,6 +60,12 @@ public class MainMenuManager : MonoBehaviour
     {
         controlScreen.SetActive(false);
         Array.ForEach(mainMenuElements, ctx => ctx.SetActive(true));
+    }
+    
+    public void HideAllMenus()
+    {
+        Array.ForEach(mainMenuElements, ctx => ctx.SetActive(false));
+        controlScreen.SetActive(false);
     }
 
     private void SetMainMenuButtons()

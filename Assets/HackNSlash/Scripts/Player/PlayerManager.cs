@@ -1,4 +1,5 @@
 using Combat;
+using HackNSlash.Scripts.UI;
 using UnityEngine;
 
 namespace Player
@@ -12,6 +13,9 @@ namespace Player
         private PlayerInputManager _input;
         private ComboManager _comboManager;
         private PlayerMovement _movement;
+
+        [Header("External References")] 
+        [SerializeField] private PauseMenuManager _pauseMenu;
         
         void Awake()
         {
@@ -29,6 +33,9 @@ namespace Player
             _playerAnimationManager.OnAnimationHit += _comboManager.ToggleHitbox;
             _playerAnimationManager.OnAnimationSuspendRotation += _movement.SuspendRotation;
             _playerAnimationManager.OnAnimationReturningToIdle += _comboManager.SetReturningToIdle;
+            
+            //External
+            _input.InputActions.Player.Pause.performed += _ => _pauseMenu.TogglePauseMenu();
         }
         
         void Update()

@@ -18,11 +18,9 @@ namespace HackNSlash.Scripts.TitleScreen
 
         private void SequentiateScreens()
         {
-            Debug.Log("aaaa");
-
             if (sequenceIndex >= sequentialScreens.Length - 1)
             {
-                GameManager.Instance.LoadGameScene();
+                GameManager.Instance.LoadMainMenu();
                 return;
             }
             sequentialScreens[sequenceIndex].SetActive(false);
