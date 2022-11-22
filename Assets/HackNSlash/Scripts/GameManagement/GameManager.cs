@@ -12,12 +12,19 @@ namespace HackNSlash.Scripts.GameManagement
         [SerializeField] private SceneReference _mainMenuScene;
         [FormerlySerializedAs("mainScene")] [SerializeField] private SceneReference combatScene0;
         [SerializeField] private SceneReference victorySceneReference;
+        [FormerlySerializedAs("defeatSceneReference")] [SerializeField] private SceneReference gameOverSceneReference;
 
         public bool isBooting = true;
+        public bool isPaused = false;
         
         public void LoadVictoryScene()
         {
             SceneManager.LoadScene(victorySceneReference.BuildIndex);
+        }
+
+        public void LoadGameOverScene()
+        {
+            SceneManager.LoadScene(gameOverSceneReference.BuildIndex);
         }
 
         public void LoadMainMenu()
@@ -39,12 +46,14 @@ namespace HackNSlash.Scripts.GameManagement
         public void PauseGame()
         {
             Time.timeScale= 0;
+            isPaused = true;
             SetMousePointerForGameplay(false);
         }
     
         public void ResumeGame()
         {
             Time.timeScale = 1;
+            isPaused = false;
             SetMousePointerForGameplay(true);
         }
 

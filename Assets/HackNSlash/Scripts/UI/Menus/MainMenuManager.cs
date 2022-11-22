@@ -1,6 +1,7 @@
 using System;
 using HackNSlash.Scripts.GameManagement;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
@@ -38,6 +39,7 @@ public class MainMenuManager : MonoBehaviour
         Array.ForEach(mainMenuElements, ctx => ctx.SetActive(true));
         GameManager.Instance.SetMousePointerForGameplay(false);
         GameManager.Instance.PauseGame();
+        EventSystem.current.SetSelectedGameObject(playButton.gameObject);
     }
 
     public void StartGameplay()
@@ -54,12 +56,15 @@ public class MainMenuManager : MonoBehaviour
     {
         controlScreen.SetActive(true);
         Array.ForEach(mainMenuElements, ctx => ctx.SetActive(false));
+        //TODO: Change for a better way to set the first selected button
+        EventSystem.current.SetSelectedGameObject(returnButtons[0].gameObject);
     }
     
     public void HideControls()
     {
         controlScreen.SetActive(false);
-        Array.ForEach(mainMenuElements, ctx => ctx.SetActive(true));
+        // Array.ForEach(mainMenuElements, ctx => ctx.SetActive(true));
+        ShowMainMenu();
     }
     
     public void HideAllMenus()

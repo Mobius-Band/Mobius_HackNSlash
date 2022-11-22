@@ -1,6 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
+using HackNSlash.Scripts.GameManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -31,7 +30,7 @@ public class Menu : MonoBehaviour
     {
         if (_canClick)
             // menu scene
-            SceneManager.LoadScene(0);
+            GameManager.Instance.ReloadGame();
     }
     
     public void QuitButton()

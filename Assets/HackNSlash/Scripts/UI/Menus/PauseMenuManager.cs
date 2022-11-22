@@ -1,6 +1,7 @@
 ﻿using System;
 using HackNSlash.Scripts.GameManagement;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -30,19 +31,20 @@ namespace HackNSlash.Scripts.UI
 
         private void Pause()
         {
-            pauseMenuCanvas.SetActive(true);
+            ShowPauseMenu();
             GameManager.Instance.PauseGame();
         }
         
         private void Resume()
         {
-            pauseMenuCanvas.SetActive(false);
+            HidePauseMenu();
+            controlsSubmenu.SetActive(false);
             GameManager.Instance.ResumeGame();
         }
 
         public void TogglePauseMenu()
         {
-            if (pauseMenuCanvas.activeSelf)
+            if (GameManager.Instance.isPaused)
             {
                 Resume();
             }
@@ -55,13 +57,25 @@ namespace HackNSlash.Scripts.UI
         public void ShowControls()
         {
             controlsSubmenu.SetActive(true);
-            pauseMenuCanvas.SetActive(false);
+            HidePauseMenu();
+            EventSystem.current.SetSelectedGameObject(controlsReturnButton.gameObject);
         }
     
         public void HideControls()
         {
             controlsSubmenu.SetActive(false);
+            ShowPauseMenu();
+        }
+
+        public void ShowPauseMenu()
+        {
             pauseMenuCanvas.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(continueButton.gameObject);
+        }
+        
+        public void HidePauseMenu()
+        {
+            pauseMenuCanvas.SetActive(false);
         }
     }
 }

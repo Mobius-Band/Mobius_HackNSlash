@@ -1,19 +1,19 @@
-﻿using Eflatun.SceneReference;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using HackNSlash.Scripts.GameManagement;
 using Util;
 
 namespace HackNSlash.Scripts.Player
 {
     public class PlayerHealth : Health
     {
-        //TODO: Use sceneReference
-        [SerializeField] private SceneReference gameOverSceneReference;
+        new void Start()
+        {
+            base.Start();
+            OnHealthChanged += PlayerStatsManager.Instance.SetHealthPercentage;
+        }
+        
         protected override void Die()
         {
-            //TODO: Create a scene transition manager
-            // game over scene
-            SceneManager.LoadScene(2);
+            GameManager.Instance.LoadGameOverScene();
         }
     }
 }

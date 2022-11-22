@@ -1,5 +1,6 @@
 using System;
 using Enemy;
+using HackNSlash.Scripts.GameManagement;
 using UnityEngine;
 
 namespace Util
@@ -13,6 +14,8 @@ namespace Util
         
         public Action<int, int> OnHealthChanged;
         public Action OnDeath;
+        
+        private float HealthPercentage => (float) _currentHealth / maxHealth;
 
         public int CurrentHealth
         {
@@ -36,7 +39,7 @@ namespace Util
             }
         }
 
-        void Start()
+        protected void Start()
         {
             _takeDamageEffect = GetComponent<TakeDamageEffect>();
             _currentHealth = maxHealth;
