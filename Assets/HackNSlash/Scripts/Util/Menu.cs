@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using HackNSlash.Scripts.GameManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,16 +23,13 @@ public class Menu : MonoBehaviour
     public void StartButton()
     {
         if (_canClick)
-            // game scene
-        //TODO: use scene ref
-            SceneManager.LoadScene(1);
+            GameManager.Instance.LoadPuzzleScene();
     }
     
     public void ReturnToMenuButton()
     {
         if (_canClick)
-            // menu scene
-            SceneManager.LoadScene(0);
+            GameManager.Instance.LoadMenuScene();
     }
     
     public void QuitButton()

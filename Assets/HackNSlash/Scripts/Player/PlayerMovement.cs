@@ -52,12 +52,12 @@ namespace Player
         {
             if (IsMoving())
             {
-                _animator.SetBool("isMoving", true);
+                if (_animator != null) _animator.SetBool("isMoving", true);
                 _rigidbody.velocity = _moveDirection * _moveSpeed;
             }
             else
             {
-                _animator.SetBool("isMoving", false);
+                if (_animator != null) _animator.SetBool("isMoving", false);
             }
         }
         
@@ -101,7 +101,7 @@ namespace Player
 
             _rigidbody.velocity = direction * (_moveSpeed + _dashSpeed);
             
-            _animator.Play("Dash");
+            if (_animator != null) _animator.Play("Dash");
             
             yield return new WaitForSeconds(_dashTime);
             

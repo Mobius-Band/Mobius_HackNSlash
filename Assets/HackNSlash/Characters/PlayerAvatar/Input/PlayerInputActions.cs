@@ -209,6 +209,120 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""PuzzlePlayer"",
+            ""id"": ""7db8e9ff-8dd2-4983-8a55-5449addc6466"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""ecbde6df-7139-4022-9017-088764f6705a"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""a753af91-fcd5-4efa-b080-b3699d3f759d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""37121ca0-7919-458e-b0d1-0ad83a9c22eb"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": ""StickDeadzone"",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""e53ad088-836a-41b5-81f2-1f8c7cde6c17"",
+                    ""path"": ""Dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""f10d9bf2-0c81-4c7d-a22d-4b26f3fc1681"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""1667e957-545d-40cb-a3fb-8721d472a81a"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""1d8a658d-5e3c-4b7f-bf0d-eb42bb042567"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""7521620e-51e4-4861-bdd6-50d948eff349"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""128e5f29-6a8e-4a84-a367-14252d49ecfc"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse;Gamepad"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fe4888fa-69a7-4837-a871-1fa5aeeae353"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -280,6 +394,10 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
+        // PuzzlePlayer
+        m_PuzzlePlayer = asset.FindActionMap("PuzzlePlayer", throwIfNotFound: true);
+        m_PuzzlePlayer_Move = m_PuzzlePlayer.FindAction("Move", throwIfNotFound: true);
+        m_PuzzlePlayer_Interact = m_PuzzlePlayer.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -392,6 +510,47 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // PuzzlePlayer
+    private readonly InputActionMap m_PuzzlePlayer;
+    private IPuzzlePlayerActions m_PuzzlePlayerActionsCallbackInterface;
+    private readonly InputAction m_PuzzlePlayer_Move;
+    private readonly InputAction m_PuzzlePlayer_Interact;
+    public struct PuzzlePlayerActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public PuzzlePlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_PuzzlePlayer_Move;
+        public InputAction @Interact => m_Wrapper.m_PuzzlePlayer_Interact;
+        public InputActionMap Get() { return m_Wrapper.m_PuzzlePlayer; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PuzzlePlayerActions set) { return set.Get(); }
+        public void SetCallbacks(IPuzzlePlayerActions instance)
+        {
+            if (m_Wrapper.m_PuzzlePlayerActionsCallbackInterface != null)
+            {
+                @Move.started -= m_Wrapper.m_PuzzlePlayerActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_PuzzlePlayerActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_PuzzlePlayerActionsCallbackInterface.OnMove;
+                @Interact.started -= m_Wrapper.m_PuzzlePlayerActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_PuzzlePlayerActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_PuzzlePlayerActionsCallbackInterface.OnInteract;
+            }
+            m_Wrapper.m_PuzzlePlayerActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
+            }
+        }
+    }
+    public PuzzlePlayerActions @PuzzlePlayer => new PuzzlePlayerActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -443,5 +602,10 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+    }
+    public interface IPuzzlePlayerActions
+    {
+        void OnMove(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }
