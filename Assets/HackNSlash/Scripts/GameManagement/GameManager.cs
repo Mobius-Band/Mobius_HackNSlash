@@ -1,5 +1,4 @@
-﻿using Eflatun.SceneReference;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -9,38 +8,38 @@ namespace HackNSlash.Scripts.GameManagement
 {
     public class GameManager : Singleton<GameManager>
     {
-        [SerializeField] private SceneReference _mainMenuScene;
-        [FormerlySerializedAs("mainScene")] [SerializeField] private SceneReference combatScene0;
-        [SerializeField] private SceneReference victorySceneReference;
-        [FormerlySerializedAs("defeatSceneReference")] [SerializeField] private SceneReference gameOverSceneReference;
+        [SerializeField] private int _mainMenuSceneIndex;
+        [FormerlySerializedAs("mainScene")] [SerializeField] private int combatScene0Index;
+        [SerializeField] private int victorySceneReferenceIndex;
+        [FormerlySerializedAs("defeatSceneReference")] [SerializeField] private int gameOverSceneReferenceIndex;
 
         public bool isBooting = true;
         public bool isPaused = false;
         
         public void LoadVictoryScene()
         {
-            SceneManager.LoadScene(victorySceneReference.BuildIndex);
+            SceneManager.LoadScene(victorySceneReferenceIndex);
         }
 
         public void LoadGameOverScene()
         {
-            SceneManager.LoadScene(gameOverSceneReference.BuildIndex);
+            SceneManager.LoadScene(gameOverSceneReferenceIndex);
         }
 
         public void LoadMainMenu()
         {
-            SceneManager.LoadScene(_mainMenuScene.Name);
+            SceneManager.LoadScene(_mainMenuSceneIndex);
         }
         
         public void LoadFirstCombatScene()
         {
-            SceneManager.LoadScene(combatScene0.BuildIndex);
+            SceneManager.LoadScene(combatScene0Index);
         }
 
         public void ReloadGame()
         {
             isBooting = true;
-            SceneManager.LoadScene(_mainMenuScene.BuildIndex);
+            SceneManager.LoadScene(_mainMenuSceneIndex);
         }
         
         public void PauseGame()
